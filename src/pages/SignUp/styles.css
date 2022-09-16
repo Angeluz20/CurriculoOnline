@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Exo+2:wght@300&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Reem+Kufi&family=Saira:wght@200;300&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+body{
+    margin: 0;
+    background-color: #1c1c1e;
+    font-family: 'Varela Round', sans-serif;
+ 
+}
+.curved{
+    margin: 0;
+    width: 100%;
+    position: absolute;
+  
+    flex-direction: column-reverse;
+}
+
+
+.main-login{
+    width: 100vw;
+    height: 100vh;
+    background-color: #1c1c1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.left-login{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.left-login > h1{
+color: #25b797;
+font-size: 3vw;
+position: relative
+}
+@keyframes identifier {
+    from{
+      width: 0;
+    }to{
+    width: 15em;
+    }    
+}
+@keyframes cursor {
+    from{
+     border-left-color: #fff;
+    }to{
+    border-right-color: transparent;
+    } 
+}
+#frase-de-efeito {
+    margin-top: 20px;
+    color: #ffffff;
+    position: relative  
+}
+#frase-de-efeito > h5{
+    font-family: 'Saira', sans-serif;
+    font-size: 3vw;
+  
+}
+.left-login-image{
+    width: 30vw;
+    position: relative
+}
+.right-register{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative
+}
+.card-register{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background-color: #28282a;
+    box-shadow: 0px 0px 22px #151515fc;
+    border-radius: 8px;
+    position: relative
+}
+.name-logo{
+   width: 100%;
+   flex-direction: column;
+   display: flex; 
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 15px;
+   font-family: 'Saira', sans-serif;
+   
+}
+.name-meu-curriculo{
+    width: 100%;
+    flex-direction: row;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+#textMy{
+   color: #f0f6f5;
+}
+#textCurri{
+    color: #25b797;
+}
+#textOn{
+    color: #fff;
+    letter-spacing: 9px;
+    font-size: 12px;
+    margin-top: -10px;
+}
+.name-logo2{
+    width: 100%;
+    flex-direction: column;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    font-family: 'Saira', sans-serif;
+    position: relative;
+    margin-top: 20px;
+ }
+ .name-meu-curriculo2{
+     width: 100%;
+     flex-direction: row;
+     display: flex; 
+     align-items: center;
+     justify-content: center;
+    
+ }
+ #textMy2{
+    color: #f0f6f5;
+    font-size: 2.3vw;
+ }
+ #textCurri2{
+     color: #25b797;
+     font-size: 2.3vw;
+ }
+ #textOn2{
+     color: #fff;
+     letter-spacing: 9px;
+     font-size: 1vw;
+     margin-top: -10px;
+    
+ }
+.card-register > h1{
+    color: #25b797;
+    font-weight: 500;
+    margin: 0;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Saira', sans-serif;
+}
+.text-field{
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ justify-content: center;
+ margin-top: 4px;
+}
+.text-field > input{
+   width: 100%;
+   border-radius: 3px;
+   border: none;
+   padding: 2px;
+   color:#000;
+   font-size: 12pt;
+   box-shadow: 5px 0px 22px 2px #0a0a0a43;
+   outline: none;
+   box-sizing: border-box;
+   }
+.text-field > label{
+   color: #25b797;
+   font-size: 12pt;
+   margin-bottom: 0px;
+}
+.btn-create{
+    width: 145px;
+    padding: 3px 0px;
+    margin: 20px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: rgb(42, 42, 42);
+    background: linear-gradient(to right, #25b797, #82ffa1);
+    cursor: pointer;
+    font-size: 12px;
+    height: 30px;
+}
+.btn-register{
+    width: 130px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 680;
+    letter-spacing: 2px;
+    color: #25b797;
+    background-color:#28282a;
+    cursor: pointer;
+    font-size: 10px;
+    border-color: #25b797;
+    text-decoration: none;
+}
+.btn-create:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+
+}
+.btn-register:hover{
+    transform: scale(1.5);
+    transition: all 0.9s;
+    color: #fff;
+}
+@media only screen and (max-width:950px){
+    .card-register{
+        width: 85%;
+    }
+    
+}
+@media only screen and (max-width:600px){
+    .main-login{
+        flex-direction: column;    
+    }
+    .card-register{
+        width: 100%;      
+    }
+    .text-field > input{
+        padding: 8px;
+    }
+    .btn-create{     
+        padding: 8px 0px;      
+    }
+    .btn-register{     
+        padding: 8px 0px;      
+    }
+    .right-register{
+        width: 60vw;
+        margin-bottom: 140px;   
+    }
+    .left-login-image{
+        width: 45vw;
+    }
+    .left-login > h1{
+        font-size: 4vw;
+    }
+    .name-logo{
+     margin-bottom: 10px;
+    } 
+    .curved{
+        width: 100%;
+    }
+}
