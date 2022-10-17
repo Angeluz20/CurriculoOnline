@@ -1,26 +1,31 @@
 import { useState, useContext } from 'react';
-import {Link} from 'react-router-dom'
-import '../Signin/styles.css'
-import curriculo from './curriculo.svg'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/auth';
+import { FaRegUser } from 'react-icons/fa'
+import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai'
+//AiOutlineLock
+import '../Signin/styles.css'
+
+import curriculo from './curriculo.svg'
+import Loading from '../Components/loading/loading';
 
 export default function Signin() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-   const {SignIn, loadingAuth} = useContext(AuthContext)
-    
-    function handleLogin(e){
+    const { SignIn, loadingAuth } = useContext(AuthContext)
+
+    function handleLogin(e) {
         e.preventDefault();
-       if(email !== '' && password !== ''){
-        SignIn(email, password)
-       }else if(email === '' && password === ''){
+        if (email !== '' && password !== '') {
+            SignIn(email, password)
+        } else if (email === '' && password === '') {
             alert('preencha todos os campos')
-       }else if(email === '' || password === ''){
+        } else if (email === '' || password === '') {
             alert('preencha todos os campos')
-       }
-   
-   
+        }
+
+
     }
 
     return (
@@ -44,14 +49,14 @@ export default function Signin() {
                     </div>
                     <div id="frase-de-efeito">
                         <h5>Rápido, fácil e prático.</h5>
-                       
+
                     </div>
 
                     <img src={curriculo} alt='animated' className='left-login-image' />
                 </div>
 
                 <div className='right-login' >
-                    <form className='card-login'  onSubmit={handleLogin}>
+                    <form className='card-login' onSubmit={handleLogin}>
                         <div className='name-logo'>
                             <div className='name-meu-curriculo'>
                                 <h5 id='textMy'>MEU</h5>
@@ -63,23 +68,31 @@ export default function Signin() {
                         <h1>Login</h1>
                         <div className='text-field'>
                             <label for='usuario'>E-mail</label>
-                            <input type='text' name='usuario'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                            <div className='container-input'>
+                                <AiOutlineUser color='#25b797' size={20} />
+                                <input type='text' name='usuario' placeholder='exemplo@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                            </div>
+
                         </div>
 
-                        <div className='text-field' >
+                        <div className='text-field'>
                             <label for='senha'>Senha</label>
-                            <input type='password' name='senha'  value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            <div className='container-input'>
+                                <AiOutlineLock  color='#25b797' size={22} />
+                                <input type='password' name='senha' placeholder='*********' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            </div>
+
                         </div>
-                        <button type='submit' className='btn-login' >{loadingAuth ? 'Carregando...' : ' Acessar'}</button>
+                        {loadingAuth ? <Loading /> : <button type='submit' className='btn-login' >Acessar</button>}
                         <div>
-                             <Link to="/register" className='btn-register'>Registrar</Link>
+                            <Link to="/register" className='btn-register'>Registrar</Link>
                         </div>
-                       
-                       {/* <button to="/register" className='btn-register'>Registrar</button> */}
+
+                        {/* <button to="/register" className='btn-register'>Registrar</button> */}
                     </form>
 
                 </div>
-
+              
             </div>
 
         </body>

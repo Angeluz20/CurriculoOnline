@@ -163,17 +163,28 @@ position: relative
  justify-content: center;
  margin-top: 4px;
 }
-.text-field > input{
+
+.container-input {
+   display: flex;
    width: 100%;
-   border-radius: 3px;
-   border: none;
-   padding: 2px;
-   color:#000;
-   font-size: 12pt;
-   box-shadow: 5px 0px 22px 2px #0a0a0a43;
-   outline: none;
-   box-sizing: border-box;
-   }
+   border-radius: 4px;
+   height: 40px;
+   border:solid 1.5px;
+   border-color: #25b797;
+   align-items: center;
+   background-color:#1e1e1f;
+   padding: 10px;
+}
+.container-input > input{
+    display: flex;
+    width: 100%;
+    border-radius: 18px;
+    height: 35px;
+    background-color:#28282a00;
+    border: none;
+    margin-left: 5px;
+    color: #f0f6f5;
+ }
 .text-field > label{
    color: #25b797;
    font-size: 12pt;
