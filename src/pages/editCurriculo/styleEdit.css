@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+
+body{
+    margin: 0;
+    background-color: #1c1c1e;
+    font-family: 'Varela Round', sans-serif;
+ 
+}
+.main-edit{
+
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-edit{
+    width: 60%;
+    height: 460px;
+    background-color: #28282a;;
+    flex-direction: column;
+    display: flex;
+    box-shadow: 0px 10px 22px 2px #0a0a0a97;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+#title-edit{
+    color: #fff;
+    align-items: flex-end;
+    margin: 10px 15px;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+}
+.card-curriculo-save{
+    margin-top: 17px;
+    width: 90%;
+    background-color: #3d3f3f;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.card-curriculo-empty{
+    margin-top: 17px;
+    width: 90%;
+    background-color: #3d3f3f;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.card-curriculo-save > span{
+   margin: 20px;
+}
+#link-style:hover{
+    transform: scale(1.2);
+    transition: all 0.5s;
+   
+ }
