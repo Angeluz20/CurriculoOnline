@@ -67,7 +67,7 @@ export default function SignUp() {
                             <label for='nome'>Nome</label>
                             <div className='container-input'>
                                 <AiOutlineUser color='#25b797' size={22} />
-                                <input type='text' name='nome' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+                                <input type='text' name='nome' value={nome} placeholder='Nome de usuário' onChange={(e) => setNome(e.target.value)}></input>
                             </div>
                         </div>
 
@@ -75,7 +75,7 @@ export default function SignUp() {
                             <label for='usuario'>E-mail</label>
                             <div className='container-input'>
                                 <AiOutlineMail color='#25b797' size={20} />
-                                <input type='text' name='email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                                <input type='text' name='email' value={email} placeholder='exemplo@gmail.com' onChange={(e) => setEmail(e.target.value)}></input>
                             </div>
 
                         </div>
@@ -84,7 +84,7 @@ export default function SignUp() {
                             <label for='senha'>Senha</label>
                             <div className='container-input'>
                                 <AiOutlineLock color='#25b797' size={20} />
-                                <input type='password' name='senha' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                <input type='password' name='senha' value={password} placeholder='*********'  onChange={(e) => setPassword(e.target.value)}></input>
                             </div>
 
                         </div>

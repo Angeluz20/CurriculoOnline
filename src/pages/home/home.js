@@ -17,26 +17,44 @@ export default function Home() {
     const [estadoCivil, setEstadoCivil] = useState('');
     const [genero, setGenero] = useState('');
     const [cidade, setCidade] = useState('');
+    const [nomeCurri, setNomeCurri] = useState('');
+    const [listNameCurri, setListNameCurri] = useState([]);
+    const [selectedNameCurri, setSelectedNameCurri] = useState(0);
+    const [loadNameCurri, setLoadNameCurri] = useState(true);
 
     const { user } = useContext(AuthContext)
-    // const options = [
-    //     { value: 'solteiro', label: 'Solteiro(a)' },
-    //     { value: 'casado', label: 'Casado(a)' },
-    //     { value: 'divorciado', label: 'divorciada(a)' }
-    // ]
 
-    const customStyles = {
-        option: (provided, state) => ({
-            ...provided,
+    // useEffect(() => {
+    //     async function loadNameCurri(){
+    //         await firebase.firestore().collection('curriculoName')
+    //        .get()
+    //         .then((snapshot) => {
+    //             let lista = [];
+    //             snapshot.forEach((doc) =>{
+    //                 lista.push({
+    //                     id: doc.id,
+    //                     nomeCurri: doc.data().nomeCurri
+    //                 })
+    //             })
+    //             if(lista.length === 0){
+    //                 console.log('Nenhum nome cadastrado')
+    //                 setListNameCurri([{id:'1', nomeCurri: ''}]);
+    //                 setLoadNameCurri(false);
+    //                 return;
+    //             }
+    //             setListNameCurri(lista);
+    //             setLoadNameCurri(false)
+    //         })
+    //         .catch((error) =>{
+    //             console.log(error);
+    //             setListNameCurri([{id:'1', nomeCurri: ''}]);
+    //             setLoadNameCurri(false);
+    //             toast.error('deu algum erro');
+    //         })
+    //     }
+    //      loadNameCurri()
+    // })
 
-            color: state.isSelected ? ' #484b4e' : 'black',
-            backgroundColor: state.isSelected ? '#25b797' : 'white'
-        }),
-        control: (provided) => ({
-            ...provided,
-            marginTop: "5%",
-        })
-    }
     async function handleSave(e) {
         e.preventDefault();
         if (nome !== "" && contato !== "" && endereco !== "" && nasc !== "") {
@@ -50,7 +68,8 @@ export default function Home() {
                     nasc: nasc,
                     estadoCivil: estadoCivil,
                     genero: genero,
-                    cidade, cidade
+                    cidade: cidade,
+                    nomeCurri, nomeCurri
                 })
                 .then(() => {
                     setNome('');
@@ -60,6 +79,7 @@ export default function Home() {
                     setEstadoCivil('');
                     setGenero('');
                     setCidade('');
+                    setNomeCurri('');
                     toast.info("Curriculo finalizado!");
                 })
                 .catch((error) => {
@@ -69,6 +89,25 @@ export default function Home() {
         } else {
             toast.error('Preencha todos os campos')
         }
+    }
+    async function handleRegisterCurri(e) {
+        e.preventDefault();
+        if (nomeCurri !== '') {
+            await firebase.firestore().collection('curriculoName')
+                .add({
+                    nomeCurri: nomeCurri
+                })
+                .then(() => {
+                    toast.info('Cadastrado com Sucesso!')
+                })
+                .catch((error) => {
+                    console.log(error)
+                    toast.error('Erro ao cadastar')
+                })
+        } else {
+            toast.error('É obrigatório cadastrar um nome ao seu currículo')
+        }
+
     }
     //seleciona o estado civil
     function estCivil(e) {
@@ -82,6 +121,12 @@ export default function Home() {
         setGenero(e.target.value)
         console.log(e.target.value)
     }
+    function nomeSelecionado(e){
+        console.log('index do nome: ', e.target.value)
+        console.log('nome selecionado', listNameCurri[e.target.value])
+        setSelectedNameCurri(e.target.value)
+    }
+
 
     return (
         <div className='container-principal'>
@@ -90,6 +135,26 @@ export default function Home() {
 
 
                 <div className='form-align'>
+                    <div>
+                        <form onSubmit={handleRegisterCurri}>
+                            <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
+                            <button type='submit'>Cadastar</button>
+
+                            <select value={selectedNameCurri} onChange={nomeSelecionado}>
+                            {listNameCurri.map((item, index) =>{
+                                return(
+                                 <option key={item.id} value={index}>
+                                    {item.nomeCurri}
+                                 </option>
+                                )
+                            })}
+                            </select>
+                        </form>
+
+                    </div>
+
+
+
                     <form className='container-form' onSubmit={handleSave}>
 
                         <section className='form' >
@@ -106,7 +171,7 @@ export default function Home() {
                                             <input className='inputName' value={endereco} onChange={(e) => setEndereco(e.target.value)}></input>
 
                                             <labe id='labelStyle'>Telefone</labe>
-                                            <input className='inputName' type='tel' required="required" maxlength="15"  placeholder="(00) 0 0000-0000" value={contato} onChange={(e) => setContato(e.target.value)}></input>
+                                            <input className='inputName' type='tel' required="required" maxlength="15" placeholder="(00) 0 0000-0000" value={contato} onChange={(e) => setContato(e.target.value)}></input>
 
                                             <div className='container-city-nasc'>
                                                 <div>
@@ -178,9 +243,15 @@ export default function Home() {
 
                             />
 
-                            <button type="submit">Salvar</button>
+
                         </section>
-                        <div className='line'></div>
+                        <div className='container-btn-form'>
+
+                            <button className='btn-save-form' type="submit">Salvar</button>
+                        </div>
+                        <div className='line'>
+
+                        </div>
 
                     </form>
 

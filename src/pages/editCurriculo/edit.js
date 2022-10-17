@@ -25,11 +25,20 @@ export default function EditCurriculo() {
         </section>) : (<section className='container-edit'>
 
           <label id="title-edit">Meus currículos <hr /></label>
-
+          
+          <select>
+            <option key={1} value={1}>
+                Curriculos
+            </option>
+          </select>
           <div className='card-curriculo-save'>
 
             <span>
-              <Link > <ImFileText2 color='#fff' size={45} id='link-style' /></Link>
+             
+
+              <Link > <ImFileText2 color='#fff' size={45} id='link-style' /></Link> 
+              <label>Nome: </label>
+              nome do curriculo
             </span>
             <span>
               <Link > <ImPencil color='#fff' size={35} id='link-style' /></Link>
@@ -37,7 +46,7 @@ export default function EditCurriculo() {
               <Link > <BiTrash color='#fff' size={37} id='link-style' /></Link>
             </span>
           </div>
-   
+
         </section>)}
 
       </div>

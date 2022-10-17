@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/auth';
 import { FaRegUser } from 'react-icons/fa'
-import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineLock, AiOutlineUser, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 //AiOutlineLock
 import '../Signin/styles.css'
 
@@ -14,7 +14,8 @@ export default function Signin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { SignIn, loadingAuth } = useContext(AuthContext)
-
+    const [secureTextEntryIcon, setSecureTextEntryIcon] = useState(false);
+    const [isRevealPwd, setIsRevealPwd] = useState(false);
     function handleLogin(e) {
         e.preventDefault();
         if (email !== '' && password !== '') {
@@ -78,8 +79,19 @@ export default function Signin() {
                         <div className='text-field'>
                             <label for='senha'>Senha</label>
                             <div className='container-input'>
-                                <AiOutlineLock  color='#25b797' size={22} />
-                                <input type='password' name='senha' placeholder='*********' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                <AiOutlineLock color='#25b797' size={22} />
+                                <input type={secureTextEntryIcon ? "text" : "password"}  name='senha' placeholder='*********' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                               
+                                <div
+                                    onClick={() => setSecureTextEntryIcon(!secureTextEntryIcon)}>
+                                    {secureTextEntryIcon== true ? (
+                                        <AiOutlineEyeInvisible color='#25b797' size={22} />
+                                    ) : (
+                                        < AiOutlineEye  color='#25b797' size={22} />
+                                    )}
+                                </div>
+
+
                             </div>
 
                         </div>
@@ -92,7 +104,7 @@ export default function Signin() {
                     </form>
 
                 </div>
-              
+
             </div>
 
         </body>
