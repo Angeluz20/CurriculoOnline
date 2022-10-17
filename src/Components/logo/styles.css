@@ -1,0 +1,29 @@
+.name-logo{
+    width: 100%;
+    flex-direction: column;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-family: 'Saira', sans-serif;
+    
+ }
+ .name-meu-curriculo{
+     width: 100%;
+     flex-direction: row;
+     display: flex; 
+     align-items: center;
+     justify-content: center;
+ }
+ #textMy{
+    color: #f0f6f5;
+ }
+ #textCurri{
+     color: #25b797;
+ }
+ #textOn{
+     color: #fff;
+     letter-spacing: 9px;
+     font-size: 12px;
+     margin-top: -10px;
+ }
