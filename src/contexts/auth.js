@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import firebase from '../pages/services/firebaseConnection';
 
-
+import {toast} from 'react-toastify'
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
@@ -43,10 +43,12 @@ function AuthProvider({ children }) {
                 setUser(data);
                 storageUser(data);
                 setLoadingAuth(false)
+                toast.success('Bem-vindo de volta, ' + data.nome)
             })
             .catch((error) => {
                 console.log(error);
                 setLoadingAuth(false);
+                toast.error('Ops, algo deu errado!')
             })
     }
 
@@ -73,11 +75,13 @@ function AuthProvider({ children }) {
                         setUser(data);
                         storageUser(data);
                         setLoadingAuth(false)
+                        toast.success('Bem-vindo a plataforma!')
                     })
             })
             .catch((error) => {
                 console.log(error);
                 setLoadingAuth(false);
+                toast.error('Ops, algo deu errado!')
             })
     }
 
@@ -92,7 +96,7 @@ function AuthProvider({ children }) {
         setUser(null);
     }
     return (                                   //está convertendo objeto para booleano
-        <AuthContext.Provider value={{ signed: !!user, user, loading, SignUp, signOut, SignIn, loadingAuth}}>
+        <AuthContext.Provider value={{ signed: !!user, user, loading, SignUp, signOut, SignIn, loadingAuth, setUser, storageUser}}>
             {children}
         </AuthContext.Provider>
     )
