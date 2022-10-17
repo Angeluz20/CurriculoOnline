@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
 import '../SignUp/styles.css'
-import {Link} from 'react-router-dom'
-import curriculo from './curriculo.svg'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth';
+import { FaRegUser, FaUserEdit } from 'react-icons/fa'
+import { AiOutlineLock, AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 
+import curriculo from './curriculo.svg'
+import Loading from '../../Components/loading/loading';
 
 export default function SignUp() {
 
@@ -11,13 +14,13 @@ export default function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
-    
-    const {SignUp, loadingAuth} = useContext(AuthContext);
-    
-    function handleSubmit(e){
+
+    const { SignUp, loadingAuth } = useContext(AuthContext);
+
+    function handleSubmit(e) {
         e.preventDefault();
-        if(nome !== '' && email !== '' && password !== ''){
-            SignUp(email,password, nome)
+        if (nome !== '' && email !== '' && password !== '') {
+            SignUp(email, password, nome)
         }
     }
 
@@ -49,7 +52,7 @@ export default function SignUp() {
                 </div>
 
                 <div className='right-register'>
-                    <form className='card-register'  onSubmit={handleSubmit}>
+                    <form className='card-register' onSubmit={handleSubmit}>
                         <div className='name-logo'>
                             <div className='name-meu-curriculo'>
                                 <h5 id='textMy'>MEU</h5>
@@ -62,24 +65,35 @@ export default function SignUp() {
 
                         <div className='text-field'>
                             <label for='nome'>Nome</label>
-                            <input type='text' name='nome' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+                            <div className='container-input'>
+                                <AiOutlineUser color='#25b797' size={22} />
+                                <input type='text' name='nome' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+                            </div>
                         </div>
 
                         <div className='text-field'>
                             <label for='usuario'>E-mail</label>
-                            <input type='text' name='email'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                            <div className='container-input'>
+                                <AiOutlineMail color='#25b797' size={20} />
+                                <input type='text' name='email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                            </div>
+
                         </div>
 
                         <div className='text-field' >
                             <label for='senha'>Senha</label>
-                            <input type='password' name='senha'  value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            <div className='container-input'>
+                                <AiOutlineLock color='#25b797' size={20} />
+                                <input type='password' name='senha' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            </div>
+
                         </div>
-                        <button className='btn-create' type='submit'>{loadingAuth ? 'Carregando...' : 'Criar'}</button>
+                        {loadingAuth ? <Loading /> : <button className='btn-create' type='submit'>Criar</button>}
                         <div>
                             <Link to="/" className='btn-register'>já tem uma conta? entre.</Link>
                         </div>
-                        
-                       {/* <button to="/register" className='btn-register'>Registrar</button> */}
+
+                        {/* <button to="/register" className='btn-register'>Registrar</button> */}
                     </form>
 
                 </div>
