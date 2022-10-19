@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Header from '../../Components/header/header';
 import '../profile/styles.css'
 import avatar from '../../img/avatar.png'
 import { FiUpload } from 'react-icons/fi'
 import { AuthContext } from '../../contexts/auth';
 import firebase from '../../pages/services/firebaseConnection';
+import { toast } from 'react-toastify';
 
 export default function Profile() {
 
@@ -13,6 +14,8 @@ export default function Profile() {
   const [email, setEmail] = useState(user && user.email);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
   const [imgAvatar, setImgAvatar] = useState(null);
+
+
 
   //(e) significa que está recebendo um evento
   function handleFile(e) {
@@ -87,11 +90,12 @@ export default function Profile() {
     }
 
   }
-
+  
   return (
     <div >
       <Header />
       <div className='container-main-profile'>
+    
         <div className='container-profile'>
           <form className='form-avatar' onSubmit={HandleSave}>
             <label className='label-avatar'>
