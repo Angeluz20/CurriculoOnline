@@ -6,10 +6,13 @@ import { AuthContext } from '../../contexts/auth'
 import firebase from '../services/firebaseConnection';
 import Header from '../../Components/header/header';
 import { toast } from 'react-toastify';
+import { useHistory, useParams } from 'react-router-dom';
 import Carousel from 'nuka-carousel/lib/carousel';
-import { Ratio } from 'react-bootstrap';
+
 
 export default function Home() {
+    const{id} = useParams();
+    const history = useHistory();
     const [nome, setNome] = useState('');
     const [contato, setContato] = useState('');
     const [nasc, setNasc] = useState('');
@@ -24,44 +27,49 @@ export default function Home() {
 
     const { user } = useContext(AuthContext)
 
-    // useEffect(() => {
-    //     async function loadNameCurri(){
-    //         await firebase.firestore().collection('curriculoName')
-    //        .get()
-    //         .then((snapshot) => {
-    //             let lista = [];
-    //             snapshot.forEach((doc) =>{
-    //                 lista.push({
-    //                     id: doc.id,
-    //                     nomeCurri: doc.data().nomeCurri
-    //                 })
-    //             })
-    //             if(lista.length === 0){
-    //                 console.log('Nenhum nome cadastrado')
-    //                 setListNameCurri([{id:'1', nomeCurri: ''}]);
-    //                 setLoadNameCurri(false);
-    //                 return;
-    //             }
-    //             setListNameCurri(lista);
-    //             setLoadNameCurri(false)
-    //         })
-    //         .catch((error) =>{
-    //             console.log(error);
-    //             setListNameCurri([{id:'1', nomeCurri: ''}]);
-    //             setLoadNameCurri(false);
-    //             toast.error('deu algum erro');
-    //         })
-    //     }
-    //      loadNameCurri()
-    // })
-
+    useEffect(() => {
+        async function loadNameCurri() {
+          await firebase.firestore().collection('users')
+          .doc(user.uid).collection('teste')
+            .get()
+            .then((snapshot) => {
+              let lista = [];
+              snapshot.forEach((doc) => {
+                lista.push({
+                  id: doc.id,
+                  nomeCurri: doc.data().nomeCurri
+                })
+              })
+              if (lista.length === 0) {
+                console.log('Nenhum nome cadastrado')
+                setListNameCurri([{ id: '1', nomeCurri: 'sem nome ' }]);
+                setLoadNameCurri(false);
+                return;
+              }
+              setListNameCurri(lista);
+              setLoadNameCurri(false)
+            })
+            .catch((error) => {
+              console.log(error);
+              setListNameCurri([{ id: '1', nomeCurri: '' }]);
+              setLoadNameCurri(false);
+              toast.error('deu algum erro');
+            })
+        }
+        loadNameCurri()
+      })
     async function handleSave(e) {
         e.preventDefault();
         if (nome !== "" && contato !== "" && endereco !== "" && nasc !== "") {
-            await firebase.firestore().collection('curriculos')
+           
+            await firebase.firestore().collection('users')
+            .doc(user.uid).collection('curriculosName')
                 //'.add' gera meu ID aleatorio
                 .add({
+                   
+                    user: user.uid,
                     created: new Date(),
+                    docId: listNameCurri[selectedNameCurri].id,
                     nome: nome,
                     endereco: endereco,
                     contato: contato,
@@ -69,7 +77,7 @@ export default function Home() {
                     estadoCivil: estadoCivil,
                     genero: genero,
                     cidade: cidade,
-                    nomeCurri, nomeCurri
+                    nomeCurri: listNameCurri[selectedNameCurri].nomeCurri,
                 })
                 .then(() => {
                     setNome('');
@@ -93,8 +101,10 @@ export default function Home() {
     async function handleRegisterCurri(e) {
         e.preventDefault();
         if (nomeCurri !== '') {
-            await firebase.firestore().collection('curriculoName')
+            await firebase.firestore().collection('users')
+                .doc(user.uid).collection('teste')
                 .add({
+                    user: user.uid,
                     nomeCurri: nomeCurri
                 })
                 .then(() => {
@@ -121,7 +131,7 @@ export default function Home() {
         setGenero(e.target.value)
         console.log(e.target.value)
     }
-    function nomeSelecionado(e){
+    function nomeSelecionado(e) {
         console.log('index do nome: ', e.target.value)
         console.log('nome selecionado', listNameCurri[e.target.value])
         setSelectedNameCurri(e.target.value)
@@ -141,13 +151,13 @@ export default function Home() {
                             <button type='submit'>Cadastar</button>
 
                             <select value={selectedNameCurri} onChange={nomeSelecionado}>
-                            {listNameCurri.map((item, index) =>{
-                                return(
-                                 <option key={item.id} value={index}>
-                                    {item.nomeCurri}
-                                 </option>
-                                )
-                            })}
+                                {listNameCurri.map((item, index) => {
+                                    return (
+                                        <option key={item.id} value={index}>
+                                            {item.nomeCurri}
+                                        </option>
+                                    )
+                                })}
                             </select>
                         </form>
 
