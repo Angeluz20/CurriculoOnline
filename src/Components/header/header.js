@@ -5,8 +5,8 @@ import Logo from '../logo/logo';
 import avatar from '../../img/avatar.png'
 
 import { AiOutlinePoweroff, AiOutlineHome, AiOutlineInfoCircle } from 'react-icons/ai'
-import { ImProfile, ImFileText2 } from 'react-icons/im'
-
+import { ImProfile, ImFileText2, ImExit} from 'react-icons/im'
+//
 import { AuthContext } from '../../contexts/auth';
 //AiOutlinePoweroff ImProfile
 export default function Header() {
@@ -49,7 +49,7 @@ export default function Header() {
 
 
                 <button onClick={() => signOut()} className='btn-exit'>
-                    <AiOutlinePoweroff color='#fff' size={22} />
+                    <ImExit color='#fff' size={22} />
 
                 </button>
             </div>
