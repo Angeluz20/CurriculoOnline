@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+
+.temp3{
+    background-color: #f3f3f3;
+    width: 100px;
+    height: 100px;
+}
+
+.container-city-nasc{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+.container-city-nasc > label{
+    flex-direction: column;
+    display: flex;
+}
+
+
+
+
+.template3{
+    margin-left: 35px;
+    width: 330px;
+    height: 460px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0px 10px 22px 2px #0a0a0a53;
+    box-sizing: border-box;
+    background-color: #f2a6e4a4;;
+    border-radius: 10px;
+    justify-content: flex-end;
+}
+
+.header-template-3{
+    padding: 6px;
+    width: 100%;
+    height: 90px;
+    background-color:rgba(2, 102, 97, 0.16);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.nome-temp3{
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+}
+.nome-temp3 >h5{
+   color: rgb(32, 32, 32);
+   font-weight: 700;
+}
+.design-temp3{
+    width: 104px;
+    height: 90px;
+    background-color: rgb(13, 158, 151);
+    position: absolute;
+    border-bottom-left-radius:  80px 70px;
+    border-top-right-radius: 10px;
+}
+.photo-template-3{
+    width: 75px;
+    height: 60px;
+    background-color: #eeeeee;
+    border-radius:20px;
+    margin-right: 3px;
+    position: relative;
+    box-shadow: 0px 10px 22px 2px #033e4653;
+}
+.data-user-header{
+width: 100%;
+}
+.info-user-temp3{
+    margin-top: 7px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 17px;
+}
+.info-user-temp3 > span{
+ font-size: 7.2px;
+}
+.container-carousel{
+    width: 400px;
+    height: 300px;
+}
+
+.objective{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.txtarea{
+    margin-top: 20px;
+    resize:none;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.row-items{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 40px;
+}
