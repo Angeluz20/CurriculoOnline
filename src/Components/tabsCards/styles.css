@@ -2,12 +2,14 @@
     border-radius: 0;
     color: #fff;
     background-color: #28282a;
+    font-size: 11px;
 }
 .nav-pills .nav-item:not(:nth-last-child(1)) .nav-link{
-    border-right: 2px solid #25b797;
+    border-right: 2px solid #323232;
 }
 .nav.nav-pills .nav-link.active {
     background-color:  #25b797;
+    font-size: 12px;
 }
 #colorLabelText{
     color: #fff;

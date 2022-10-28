@@ -3,7 +3,7 @@ import { Container, Row, Tabs, Tab } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../tabsCards/styles.css'
 
-export default function tabsCards({ cabecalho, body, xp,objective }) {
+export default function tabsCards({ cabecalho, formation, xp,objective }) {
   return (
     <Container className='py-4'>
 
@@ -21,7 +21,7 @@ export default function tabsCards({ cabecalho, body, xp,objective }) {
           </Tab>
           <Tab eventKey='tab-3' title='Formação'>
             <div id='colorLabelText'>
-              {body}
+              {formation}
             </div>
           </Tab>
           <Tab eventKey='tab-4' title='Experiência'>
