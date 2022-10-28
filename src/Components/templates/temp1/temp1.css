@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+
+.temp-1{
+    background-color: #f3f3f3;
+    width: 100px;
+    height: 100px;
+}
+.container-form-temp-1{
+
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.container-city-nasc{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+.container-city-nasc > label{
+    flex-direction: column;
+    display: flex;
+}
+
+
+.template-1{
+    margin-left: 40px;
+    width: 320px;
+    height: 470px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0px 10px 22px 2px #0a0a0a53;
+    box-sizing: border-box;
+    background-color: #f3f3f3;;  
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    border-radius: 10px;
+}
+
+.header-template-1{
+    padding: 6px;
+    width: 100%;
+    height: 100px;
+    background-color:rgba(24, 132, 134, 0.298);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.nome-temp-1{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    margin-top: 8px;
+
+}
+.nome-temp-1 >h5{
+   color: rgb(32, 32, 32);
+   font-weight: 700;
+   font-family: 'Saira', sans-serif;
+   font-size: 15px;
+}
+.design-temp-1{
+    width: 104px;
+    height: 90px;
+    background-color: #0da099;
+    position: absolute;
+    border-top-left-radius: 70px;
+    border-bottom-left-radius: 70px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 30px;
+    margin-left: 210px;
+}
+
+.photo-template-1{
+    width: 78px;
+    height: 66px;
+    background-color: #eeeeee54;
+    border-radius:20px;
+    margin-right: 10px;
+    position: relative;
+    box-shadow: 0px 10px 22px 2px #07636fa4;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.data-user-header{
+width: 100%;
+}
+.info-user-temp-1{
+    margin-top: 3px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 17px;
+}
+.info-user-temp-1 > span{
+ font-size: 8.2px;
+}
+.container-carousel{
+    width: 400px;
+    height: 300px;
+}
+
+.txtarea{
+    resize:none;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.row-items{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 40px;
+}
+/* ///////////////////////////// div obetivo/////////////////////////////// */
+
+.container-informacoes-user-1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+.label-info-mini-temp{
+    width: 100%;
+    height: 20px;
+    display: flex;
+     margin-right: 30px;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.label-info-mini-temp > label{
+   
+   font-size: 9px;
+   color:  #0f715c;
+   margin-left:30px;
+   font-family: 'Saira', sans-serif;
+   font-weight: 600;
+   margin-top: 30px;
+   display: flex;
+   justify-content: flex-start;
+  
+   
+}
+
+.text-objctive-temp1{
+
+    padding-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content:flex-start;
+    margin-bottom: 10px;
+
+ }
+ .text-objctive-temp1>span{
+    display: flex;
+    text-align: justify;
+    font-size: 6px;
+    margin-left: 32px;
+    margin-right: 25px;
+ }
+@media only screen and (max-width:1240px){
+    .template-1{
+        margin-left: 30.5px;
+        width: 270px;
+        height: 400px;
+
+    }
+    .design-temp-1{
+        width: 104px;
+        height: 93px;
+        background-color: #0da099;
+        position: absolute;
+        border-top-left-radius: 70px;
+        border-bottom-left-radius: 70px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 30px;
+        margin-left: 160px;
+    }
+}
