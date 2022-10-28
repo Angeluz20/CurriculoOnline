@@ -1,62 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Exo+2:wght@300&family=Jost:wght@300&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Reem+Kufi&family=Saira:wght@200;300&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+}
 .container-principal{
     width: 100%;
-    background-color: #1e1e1f;
-    height: 100vh;
+    height: 105vh;
     justify-content: space-between;
- 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1c1c1e;
 }
 .header{
-    background-color: #1c1c1e;;
+    background-color: #1c1c1e;
     width: 100vw;
     height: 50px;
 }
+.row-items{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+}
 .container-main{
     width: 100%;
-    background-color: #9f9f9f;
-    height: 100%;
+    align-items: center;
     display: flex;
+    justify-content: center;
 }
 
 .container-form{
     width: 400px;
     height: 300px;
-    margin-left: 60px;
+    
+}
+.carousel{
+    width: 400px;
+    height: 300px;
 }
 
-.container-tab-1{
-    align-items: flex-start;
-    box-sizing: border-box;
-}
 .container-btn-form{
     width: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: -60px;
+    margin-top: -80px;
     padding: 20px;
 }
 .btn-save-form{
-    outline: none;
     border: none;
     background: linear-gradient(to right, #25b797, #82ffa1);
     box-shadow: 0px 0px 22px #1515153d;
     width: 90px;
+    border-radius: 60px;
+    padding: 7px;
 }
-
-.container-tab-grid-1{
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    justify-content: space-between;
-    width: 100%;
-    display: flex;
-    
+.btn-save-form:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+ }
+.btn-clean-form{
+  
+    box-shadow: 0px 0px 22px #1515153d;
+    width: 90px;
+    border-width: 1.5px;
+    border: none;
+    color: #fff;
+    background: linear-gradient(to right, #006c82, #027283);
+    box-shadow: 0px 10px 22px 2px #0a0a0a97;
+    margin-left: 10px;
+    border-radius: 60px;
+    padding: 7px;
 }
+.btn-clean-form:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+ }
 .form{
+    font-family: 'Quicksand', sans-serif;
     width: 430px;
-    height: 460px;
-    background-color: #28282a;;   
+    height: 520px;
+    background-color: #28282a;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -67,19 +93,9 @@
 .form input[type='radio']{
     margin: 10px;    
 }
-.container-city-nasc{
-    width: 100%;
-    flex-direction: row;
-    display: flex;
-    margin-bottom: 25px;
-    justify-content: space-between;
-}
-.container-city-nasc > label{
-    flex-direction: column;
-    display: flex;
-}
 
-.line{
+
+.line-style{
     background-color: #25b797;
     height: 10px;
     width: 430px;
@@ -89,97 +105,13 @@
     border-bottom-right-radius: 8px;
 }
 
-.inputName{
-    width: 100%;
-    outline: none;
-    border: none;
-    height: 25px;
-    background-color: rgb(255, 255, 255);
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-#labelStyle{
-    font-family: 'Varela Round', sans-serif;
-    margin:3px;
-    align-items: flex-start;
-    display: flex;
-    width: 100%;
-}
-#select-state-civil{
-    outline: none;
-    border: none;
-    background-color: #9f9f9f;
-}
+
 .carousel{
     align-items: center;
     justify-content: center;
  
 }
-.shere{
-    width: 330px;
-    height: 460px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 10px 22px 2px #0a0a0a53;
-    box-sizing: border-box;
-    background-color: #dca9e7;;
-    border-radius: 10px;
-    margin-left: 35px;
-    justify-content: center;
-}
-.template1{
-    margin-left: 35px;
-    width: 330px;
-    height: 460px;
-    display: flex;
-    align-items: flex-start;
-    box-shadow: 0px 10px 22px 2px #0a0a0a53;
-    box-sizing: border-box;
-    background-color: #f3f3f3;;
-    border-radius: 10px;
-    justify-content: flex-end;
-}
 
-.header-template-1{
-    padding: 6px;
-    width: 100%;
-    height: 90px;
-    background-color:rgba(2, 102, 97, 0.16);
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.nome-temp1{
-    width: 100%;
-    align-items: flex-start;
-    display: flex;
-    justify-content: center;
-    height: 20px;
-}
-.nome-temp1 >h5{
-   color: rgb(32, 32, 32);
-   font-weight: 700;
-}
-.design-temp1{
-    width: 104px;
-    height: 90px;
-    background-color: rgb(13, 158, 151);
-    position: absolute;
-    border-bottom-left-radius:  80px 70px;
-    border-top-right-radius: 10px;
-}
-.photo-template{
-    width: 75px;
-    height: 60px;
-    background-color: #eeeeee;
-    border-radius:20px;
-    margin-right: 3px;
-    position: relative;
-    box-shadow: 0px 10px 22px 2px #033e4653;
-}
 .data-user-header{
 width: 100%;
 }
@@ -194,9 +126,8 @@ width: 100%;
 .info-user-temp1 > span{
  font-size: 7.2px;
 }
-.container-carousel{
-    width: 400px;
-    height: 300px;
+.container-carousel-teste{
+  width: 400px;
 }
 
 .objective{
@@ -213,12 +144,414 @@ width: 100%;
     border-radius: 3px;
 }
 .form-align{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 93vw;
+}
+.container-register-name-curri{
+    width: 300px;
+    height: 300px;
+    background-color:#28282a;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 22px 2px #12121253;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+.name-curri{
+    border: none;
+    border-radius: 60px; 
+}
+.select-name-register{
+    width: 100%;
+    background: linear-gradient(to right, #25b797, #82ffa1);
+    border-radius: 60px; 
+    border: none;
+    font-family: 'Quicksand', sans-serif;
+    color: #07373a;
+}
+.select-name{
+    margin-top: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.view-input-nameCurri-register{
+   
+    display: flex;
+    flex-direction: row;
+}
+.select-name > label{
+   color: #ffffff;
+}
+.btn-register-name-curri{
+    border-width: 2px;
+    border: none;
+    background: linear-gradient(to right, #25b797, #82ffa1);
+    margin-left: 10px;
+    color: #07373a;
+    font-size: 13px;
+    padding: 7px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: 60px;  
+    box-shadow: 0px 10px 22px 2px #12121253;
+    font-family: 'Quicksand', sans-serif;
+}
+.btn-register-name-curri:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+ }
+.style-modal-temps{
+    width: 100%;
+    max-width: 500px;
+    height:630px;
+    background-color: rgba(244, 244, 244, 0);
+    border-radius: 20px;
+    align-items: center; 
+    display: flex;
+    
+ }
+.overlay-modal-temps{
+   
+    background: rgba(255,255,255,0.1);
+    box-shadow: 10px 10px 20px -10px rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    transition: .5s ease;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgb(24 32 79 / 25%) 0px 40px 80px, rgb(255 255 255 / 50%) 0px 0px 0px 0.5px inset;
+}
+.btns-modal-options{
+    width: 20px;
+    height: 90px;
+    background-color: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+}
+.btn-close-modal{
+    width: 35px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 9px;
+    background: rgba(249, 49, 8, 0.885);
+    box-shadow: 10px 10px 20px -10px rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    transition: .5s ease;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
 
 }
-.row-items{
-    flex-direction: row;
+.container-btn-modal{
+    width: 150px;
+    border-radius: 10px;
+    height: 40px;
+    background: rgba(53, 53, 53, 0.146);
+    box-shadow: 10px 10px 20px -10px rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    transition: .5s ease;
+    position: fixed;
+    margin-bottom: -520px;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    margin-top: 40px;
+    justify-content: center;
+}
+.btn-close-moda:hover{
+    transform: scale(1.2);
+    transition: all 0.5s; 
+}
+.styles-btn-options-modal{
+    width: 35px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 9px;
+    background: rgba(53, 53, 53, 0.222);
+    box-shadow: 10px 10px 20px -10px rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    transition: .5s ease;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.styles-btn-options-modal:hover{
+    transform: scale(1.2);
+    transition: all 0.5s; 
+}
+.container-temp1-view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-view-temp1{
+    margin-top: 10px;
+    border-width: 1.5px;
+    background: none;
+    color:#07373a;
+    margin-left: 45px;
+    padding: 8px;
+    font-size: 10px;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(to right, #25b797, #82ffa1);
+}
+.container-XP{
+    display: flex;
+    flex-direction: row;
+}
+
+.main-XP{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.row-xp{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.row-xp > div{
+   height: 55px;
+   margin-left: 30px;
+   display: flex;
+   flex-direction: column;
+   width: 120px;
+ }
+.row-xp > div> span{
+   display: flex;
+   flex-direction: row;
+   font-size: 10px;
+   font-family: 'Varela Round', sans-serif;
+}
+.guia{
+    width: 100%;
+    height: 120px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(to right, #25b797, #82ffa1);
+}
+.guia > label{
+    font-size: 22px;
+    font-family: 'Quicksand', sans-serif;
+    color: #28282a;
+}
+.btn-guide{
+    border:none;
+    background-color: #28282a00;
+}
+@media only screen and (max-width:1240px){
+    .row-items{
+        flex-direction: row;   
+        justify-content: space-between;
+    }
+    .container-principal{   
+        height: 100vh;
+        flex-direction: column;
+    }
+    .form-align{
+            flex-direction: row;           
+            height: 100%;    
+    }
+    .container-register-name-curri{
+            width: 240px;
+            margin-left: 10px;
+            margin-bottom: 60px;
+            padding: 10px;
+            height: 280px;             
+    }
+    .name-curri{
+          width: 90%;
+    }
+    .select-name-register{
+            width: 100%;
+    }
+    .select-name{ 
+            width: 100%;        
+            align-items: center;  
+            flex-direction: column;
+    }
+    .container-carousel{
+          
+            flex-direction: column;
+            margin-top: 60px;
+    }
+    .container-form{
+            width: 350px;
+            height: 400px;
+            margin-right: 30px;
+            margin-left: 15px;
+    }
+    .btn-view-temp1{
+            width: 100px;
+            height: 20px;
+            font-size: 8px;   
+    }
+    .container-main{
+            width: 100%;
+            height: 100%;
+            justify-content: center;        
+    }
+    .form{
+        width: 380px;
+        height: 495px;  
+    }
+    .container-carousel-teste{
+        width: 330px;
+        height: 420px;
+    }  
+    .line-style{
+    width: 380px;
+    }
+    
+}
+
+
+@media only screen and (max-width:950px){
+    .row-items{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 220vh;
+        margin-bottom: 130px;
+    }
+    .container-principal{
+     
+        height: 266vh;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-align{
+            flex-direction: column;    
+            display: flex;
+            height: 100%;    
+        }
+        .container-register-name-curri{
+            width: 340px;
+            margin-left: 10px;
+            margin-bottom: 60px;
+        }
+        .container-carousel-teste{
+            
+            margin-top: 100px;
+        }
+        .container-form{
+            width: 400px;
+            height: 430px;
+       
+            margin-right: 30px;
+            margin-left: 15px;
+        }
+        .btn-view-temp1{
+        
+            width: 140px;
+            height: 40px;
+            font-size: 11px;
+     
+        }
+        .container-main{
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color: #82ffa1;
+        }
+        .form{
+            width: 380px;
+            height: 490px;  
+        }  
+        .line-style{
+        width: 380px;
+        }
+    
+}
+@media only screen and (max-width:720px){
+    .row-items{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 200vh;
+        margin-bottom: 130px;
+    }
+    .container-principal{ 
+        height: 240vh;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-align{
+            flex-direction: column;    
+            display: flex;
+            height: 100%;    
+        }
+        .container-register-name-curri{
+            width: 340px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+        }
+        .container-carousel-teste{   
+            margin-top: 80px;
+            margin-bottom: 60px;
+        }
+        .container-form{
+            width: 400px;
+            height: 430px;     
+            margin-right: 30px;
+            margin-left: 15px;
+        }
+        .btn-view-temp1{    
+            width: 140px;
+            height: 40px;
+            font-size: 11px;   
+        }
+        .container-main{
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color: #82ffa1;
+        }
+        .form{
+            width: 390px;
+            height: 590px;  
+        }  
+        .line-style{
+        width: 380px;
+        }
+    
 }

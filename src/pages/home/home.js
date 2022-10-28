@@ -1,19 +1,58 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef, createRef } from 'react';
 import '../home/styles.css'
-import Select from 'react-select'
-import TabsCards from '../../Components/tabsCards/tabCards';
+
+
 import { AuthContext } from '../../contexts/auth'
-import firebase from '../services/firebaseConnection';
-import Header from '../../Components/header/header';
 import { toast } from 'react-toastify';
 import { useHistory, useParams } from 'react-router-dom';
+import { IconButton, TextField, Button, makeStyles, Box } from '@material-ui/core';
+import { MdAddCircleOutline } from 'react-icons/md'
+import { TiDeleteOutline } from 'react-icons/ti'
+import { AiOutlineShareAlt, AiOutlinePrinter, AiOutlineClose } from 'react-icons/ai'
+import { FaAddressBook } from 'react-icons/fa'
 import Carousel from 'nuka-carousel/lib/carousel';
+import firebase from '../services/firebaseConnection';
+import Header from '../../Components/header/header';
+import TabsCards from '../../Components/tabsCards/tabCards';
+import Templete1 from '../../Components/templates/temp1/temp1';
+import Templete2 from '../../Components/templates/temp2/temp2';
+import Templete3 from '../../Components/templates/temp3/temp3';
+import TempleteView1 from '../../Components/templates/temp1/templateView1/tempView1';
+import TitlePages from '../../Components/titlePages/titlePages';
+import Modal from 'react-modal';
+import Tab1 from '../../Components/tabsCards/tab1/tabCard1';
+import TabExperiencia from '../../Components/tabsCards/tabExperiencia/tabXp';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        "& .MuiTextField-root": {
+            margin: theme.spacing(1),
+            background: 'white',
+
+        },
+        "& .MuiFormLabel-root": {
+            color: 'grey'
+        },
+
+    },
+
+    floatingLabelFocusStyle: {
+        color: "red"
+    }
+}))
+
+
+
+
+Modal.setAppElement('#root')
+
 
 
 export default function Home() {
-    const{id} = useParams();
+    const classes = useStyles();
+    const { id } = useParams();
     const history = useHistory();
-    const [nome, setNome] = useState('');
+    const [nome, setNome] = useState('Nome');
     const [contato, setContato] = useState('');
     const [nasc, setNasc] = useState('');
     const [endereco, setEndereco] = useState('');
@@ -21,52 +60,124 @@ export default function Home() {
     const [genero, setGenero] = useState('');
     const [cidade, setCidade] = useState('');
     const [nomeCurri, setNomeCurri] = useState('');
+    const [textObective, setTextObjective] = useState('');
     const [listNameCurri, setListNameCurri] = useState([]);
     const [selectedNameCurri, setSelectedNameCurri] = useState(0);
     const [loadNameCurri, setLoadNameCurri] = useState(true);
+    const [idDocCustomer, setIdDocCustumer] = useState(false)
+    const [visibleModal, setVisibleModal] = useState(false)
+    const [valorInput, setValorInput] = useState([])
+    const [valorInputFormation, setValorInputFormation] = useState([])
+    const [email, setEmail] = useState('')
+    const [inputField, setInputField] = useState([{
+        empresa: '', cargo: '', periodo: ''
+    },]);
+    const [inputFormation, setInputFormation] = useState([{
+        nome: '', status: '', instituicao: '', cargaHoraria: ''
+    },]);
+
+
 
     const { user } = useContext(AuthContext)
 
+
     useEffect(() => {
         async function loadNameCurri() {
-          await firebase.firestore().collection('users')
-          .doc(user.uid).collection('teste')
-            .get()
-            .then((snapshot) => {
-              let lista = [];
-              snapshot.forEach((doc) => {
-                lista.push({
-                  id: doc.id,
-                  nomeCurri: doc.data().nomeCurri
+            await firebase.firestore().collection('users')
+                .doc(user.uid).collection('registerNameCurriculo')
+                .get()
+                .then((snapshot) => {
+                    let lista = [];
+                    snapshot.forEach((doc) => {
+                        lista.push({
+                            id: doc.id,
+                            nomeCurri: doc.data().nomeCurri
+                        })
+                    })
+                    if (lista.length === 0) {
+                        console.log('Nenhum nome cadastrado')
+                        setListNameCurri([{ id: '1', nomeCurri: ' ' }]);
+                        setLoadNameCurri(false);
+                        return;
+                    }
+                    setListNameCurri(lista);
+                    setLoadNameCurri(false)
+                    if (id) {
+                        loadId(lista)
+                    }
                 })
-              })
-              if (lista.length === 0) {
-                console.log('Nenhum nome cadastrado')
-                setListNameCurri([{ id: '1', nomeCurri: 'sem nome ' }]);
-                setLoadNameCurri(false);
-                return;
-              }
-              setListNameCurri(lista);
-              setLoadNameCurri(false)
-            })
-            .catch((error) => {
-              console.log(error);
-              setListNameCurri([{ id: '1', nomeCurri: '' }]);
-              setLoadNameCurri(false);
-              toast.error('deu algum erro');
-            })
+                .catch((error) => {
+                    console.log(error);
+                    setListNameCurri([{ id: '1', nomeCurri: '' }]);
+                    setLoadNameCurri(false);
+                    toast.error('deu algum erro');
+                })
         }
         loadNameCurri()
-      })
+    }, [])
+
+    async function loadId(lista) {
+        await firebase.firestore().collection('users').doc(user.uid).collection('curriculosName').doc(id)
+            .get()
+            .then((snapshot) => {
+                setNome(snapshot.data().nome)
+                setNasc(snapshot.data().nasc)
+                setCidade(snapshot.data().cidade)
+                setEndereco(snapshot.data().endereco)
+                setEstadoCivil(snapshot.data().estadoCivil)
+                setGenero(snapshot.data().genero)
+                setContato(snapshot.data().contato)
+                setSelectedNameCurri(snapshot.data().selectedNameCurri)
+                setTextObjective(snapshot.data().textObective)
+                setInputField(snapshot.data().inputField)
+                setInputFormation(snapshot.data().inputFormation)
+                setEmail(snapshot.data().email)
+                let index = lista.findIndex(item => item.id === snapshot.data().docId)
+                setSelectedNameCurri(index)
+                setIdDocCustumer(true)
+                console.log(nome)
+            })
+            .catch((err) => {
+                console.log('erro no id passado: ', err)
+                setIdDocCustumer(false)
+            })
+    }
     async function handleSave(e) {
         e.preventDefault();
+
+        if (idDocCustomer) {
+            await firebase.firestore().collection('users').doc(user.uid).collection('curriculosName').doc(id)
+                .update({
+                    user: user.uid,
+                    nome: nome,
+                    endereco: endereco,
+                    contato: contato,
+                    nasc: nasc,
+                    estadoCivil: estadoCivil,
+                    genero: genero,
+                    cidade: cidade,
+                    textObective: textObective,
+                    inputField: inputField,
+                    email: email,
+                    inputFormation: inputFormation
+                })
+                .then(() => {
+                    toast.success('Informações atualizadas com sucesso!')
+                    history.push('/edit')
+                })
+                .catch((err) => {
+                    toast.error('algo deu errado', err)
+                    console.log('algo deu errado', err)
+                })
+            return;
+        }
         if (nome !== "" && contato !== "" && endereco !== "" && nasc !== "") {
-           
+
             await firebase.firestore().collection('users')
-            .doc(user.uid).collection('curriculosName')
+                .doc(user.uid).collection('curriculosName')
                 //'.add' gera meu ID aleatorio
+
                 .add({
-                   
                     user: user.uid,
                     created: new Date(),
                     docId: listNameCurri[selectedNameCurri].id,
@@ -78,16 +189,21 @@ export default function Home() {
                     genero: genero,
                     cidade: cidade,
                     nomeCurri: listNameCurri[selectedNameCurri].nomeCurri,
+                    textObective: textObective,
+                    urlImgPhoto: null,
+                    inputField: inputField,
+                    email: email,
+                    inputFormation: inputFormation
                 })
                 .then(() => {
-                    setNome('');
-                    setContato('');
-                    setNasc('');
-                    setEndereco('');
-                    setEstadoCivil('');
-                    setGenero('');
-                    setCidade('');
-                    setNomeCurri('');
+                    // setNome('');
+                    // setContato('');
+                    // setNasc('');
+                    // setEndereco('');
+                    // setEstadoCivil('');
+                    // setGenero('');
+                    // setCidade('');
+                    // setNomeCurri('');
                     toast.info("Curriculo finalizado!");
                 })
                 .catch((error) => {
@@ -102,7 +218,7 @@ export default function Home() {
         e.preventDefault();
         if (nomeCurri !== '') {
             await firebase.firestore().collection('users')
-                .doc(user.uid).collection('teste')
+                .doc(user.uid).collection('registerNameCurriculo')
                 .add({
                     user: user.uid,
                     nomeCurri: nomeCurri
@@ -136,205 +252,377 @@ export default function Home() {
         console.log('nome selecionado', listNameCurri[e.target.value])
         setSelectedNameCurri(e.target.value)
     }
+    function opModal() {
+        setVisibleModal(true)
+    }
+    function closeModal() {
+        setVisibleModal(false)
+    }
+    async function updateImg(e) {
+        e.preventDefault();
+        const file = e.target[0]?.files[0];
 
+    }
+    function cleanInpus() {
 
+        setNome('');
+        setContato('');
+        setNasc('');
+        setEndereco('');
+        setEstadoCivil('');
+        setGenero('');
+        setCidade('');
+        setNomeCurri('');
+        setEmail();
+    }
+    function handleChangeInput(index, e) {
+        e.preventDefault();
+        const values = [...inputField];
+        values[index][e.target.name] = e.target.value;
+        setInputField(values)
+        console.log(index, e.target.name)
+    }
+    function salvarXP(e) {
+        e.preventDefault();
+        console.log('inputs ', inputField)
+        setValorInput(inputField)
+    }
+    function addXP(e) {
+        e.preventDefault();
+        setInputField([...inputField, { empresa: '', cargo: '', periodo: '' }])
+    }
+    function removeXP(index) {
+
+        const values = [...inputField];
+        values.splice(index, 1);
+        setInputField(values)
+    }
+    function handleChangeFormation(index, e) {
+        e.preventDefault();
+        const values = [...inputFormation];
+        values[index][e.target.name] = e.target.value;
+        setInputFormation(values)
+        console.log(index, e.target.name)
+    }
+    function addFormation(e) {
+        e.preventDefault();
+        setInputFormation([...inputFormation, { nome: '', status: '', instituicao: '', cargaHoraria: '' }])
+    }
+    function saveFormation(e) {
+        e.preventDefault();
+        console.log('inputs ', inputFormation)
+        setValorInputFormation(inputFormation)
+    }
     return (
         <div className='container-principal'>
-            <Header />
-            <div className='row-items'>
+
+            {/* <TitlePages title={'Home'}/> */}
+            <div className='container-principal'>
+                <Header />
+                <div className='row-items'>
 
 
-                <div className='form-align'>
-                    <div>
-                        <form onSubmit={handleRegisterCurri}>
-                            <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
-                            <button type='submit'>Cadastar</button>
+                    <div className='form-align'>
 
-                            <select value={selectedNameCurri} onChange={nomeSelecionado}>
-                                {listNameCurri.map((item, index) => {
-                                    return (
-                                        <option key={item.id} value={index}>
-                                            {item.nomeCurri}
-                                        </option>
-                                    )
-                                })}
-                            </select>
-                        </form>
+                        <div className='container-register-name-curri'>
 
-                    </div>
+                            <form onSubmit={handleRegisterCurri}>
+                                <div className='guia' onClick={() => alert('teste')}>
+                                    <div className='btn-guide'><FaAddressBook color='#28282a' size={70} /></div>
+                                    <label>Guia</label>
+                                </div>
+                                <div className='view-input-nameCurri-register'>
+                                    <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
+                                    <button type='submit' className='btn-register-name-curri'>Cadastar</button>
+                                </div>
+
+                                <div className='select-name'>
+                                    <label>Currículos cadastrados</label>
+                                    <select className='select-name-register' value={selectedNameCurri} onChange={nomeSelecionado}>
+                                        {listNameCurri.map((item, index) => {
+                                            return (
+                                                <option key={item.id} value={index}>
+                                                    {item.nomeCurri}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+
+                                </div>
+
+                            </form>
+
+                        </div>
 
 
 
-                    <form className='container-form' onSubmit={handleSave}>
+                        <form onSubmit={handleSave} autocomplete="off">
 
-                        <section className='form' >
-                            <TabsCards
-                                cabecalho={
-                                    <div className='container-tab-1'>
+                            <section className='form'>
+                                <TabsCards
+                                    cabecalho={
+                                        <>
+                                            <Tab1
+                                                name={nome}
+                                                nameOnChange={(e) => setNome(e.target.value)}
 
-                                        <div className='container-tab-grid-1'>
+                                                city={cidade}
+                                                cityOnChange={(e) => setCidade(e.target.value)}
 
-                                            <labe id='labelStyle'>Nome Completo</labe>
-                                            <input className='inputName' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+                                                address={endereco}
+                                                addressOnChange={(e) => setEndereco(e.target.value)}
 
-                                            <labe id='labelStyle'>Endereço</labe>
-                                            <input className='inputName' value={endereco} onChange={(e) => setEndereco(e.target.value)}></input>
+                                                phone={contato}
+                                                phoneOnChange={(e) => setContato(e.target.value)}
 
-                                            <labe id='labelStyle'>Telefone</labe>
-                                            <input className='inputName' type='tel' required="required" maxlength="15" placeholder="(00) 0 0000-0000" value={contato} onChange={(e) => setContato(e.target.value)}></input>
+                                                birth={nasc}
+                                                BirthOnChange={(e) => setNasc(e.target.value)}
 
-                                            <div className='container-city-nasc'>
-                                                <div>
-                                                    <labe id='labelStyle'>Cidade</labe>
-                                                    <input className='inputName' value={cidade} onChange={(e) => setCidade(e.target.value)}></input>
-                                                </div>
+                                                maritalStatus={estadoCivil}
+                                                maritalStatusOnChange={estCivil}
 
-                                                <div>
-                                                    <labe id='labelStyle'>Data de Nasc.</labe>
-                                                    <input className='inputName' type='date' value={nasc} onChange={(e) => setNasc(e.target.value)}></input>
-                                                </div>
+                                                genreOnchange={generoUser}
+
+                                                email={email}
+                                                emailOnChange={(e) => setEmail(e.target.value)}
+                                            />
+                                        </>
+
+                                    }
+                                    objective={
+
+                                        <div className='objective'>
+                                            <label>Objetivo</label>
+                                            <textarea value={textObective} onChange={(e) => setTextObjective(e.target.value)}
+                                                className='txtarea'
+                                                cols="35"
+                                                rows="8"
+                                                placeholder='Escreva sobre seus objetivos na carreira e na empresa'>
+                                            </textarea>
+                                        </div>
+                                    }
+
+                                    xp={
+                                        <div className='main-XP'>
+
+                                            {inputField.map((inputField, index) => {
+                                                return (
+                                                    <div key={index} className='container-XP'>
+                                                        <TabExperiencia
+                                                            valueEmpresa={inputField.empresa}
+                                                            valueCargo={inputField.cargo}
+                                                            valuePeriodo={inputField.periodo}
+                                                            addXP={addXP}
+                                                            removeXP={removeXP}
+                                                            onChangeXP={(e) => handleChangeInput(index, e)}
+                                                        />
+                                                    </div>
+                                                )
+                                            })}
+
+                                            <div>
 
                                             </div>
-
-
                                         </div>
-                                        <select value={estadoCivil} onChange={estCivil}>
-
-                                            <option value='solteiro'>
-                                                Solteiro(a)
-                                            </option>
-                                            <option value='casado'>
-                                                Casado(a)
-                                            </option>
-                                            <option value='viuvo'>
-                                                Viúvo(a)
-                                            </option>
-                                            <option value='divorciado'>
-                                                Divorciado(a)
-                                            </option>
-
-                                        </select>
-
-                                        <label>Gênero</label>
+                                    }
+                                    formation={
                                         <div>
-                                            <input
-                                                type='radio'
-                                                name='radio'
-                                                value='Masculino'
-                                                onChange={generoUser}
-                                            />
-                                            <span>Masculino</span>
-                                            <input
-                                                type='radio'
-                                                name='radio'
-                                                value='fem'
-                                                onChange={generoUser}
-                                            />
-                                            <span>Feminino</span>
-                                            <input
-                                                type='radio'
-                                                name='radio'
-                                                value='lgbt'
-                                                onChange={generoUser}
-                                            />
-                                            <span>LGBTQIA+</span>
+                                            {inputFormation.map((item, index) => {
+                                                return (
+                                                    <div key={index}>
+                                                        <input
+                                                            name='nome'
+                                                            label="Nome"
+                                                            value={item.nome}
+                                                            variant="standard"
+                                                            placeholder='Nome do curso'
+                                                            autocomplete="off"
+                                                            onChange={(e) => handleChangeFormation(index, e)}
+                                                        />
+
+                                                        <input
+                                                            name='status'
+                                                            label="status"
+                                                            value={item.status}
+                                                            variant="standard"
+                                                            placeholder='Status do curso'
+                                                            autocomplete="off"
+                                                            onChange={(e) => handleChangeFormation(index, e)}
+                                                        />
+
+                                                        <input
+                                                            name='instituicao'
+                                                            label="instituicao"
+                                                            value={item.instituicao}
+                                                            placeholder="Instituicao"
+                                                            autocomplete="off"
+                                                            onChange={(e) => handleChangeFormation(index, e)}
+                                                        />
+                                                        <input
+                                                            name='cargaHoraria'
+                                                            label="cargaHoraria"
+                                                            value={item.cargaHoraria}
+                                                            placeholder="Carga Horária"
+                                                            autocomplete="off"
+                                                            onChange={(e) => handleChangeFormation(index, e)}
+                                                        />
+                                                        <button onClick={saveFormation}>save</button>
+                                                        <button onClick={addFormation}>add</button>
+                                                    </div>
+                                                )
+                                            })}
 
                                         </div>
-                                        {/* <Select styles={customStyles} options={options} /> */}
-                                    </div>
-                                }
-                                objective={
 
-                                    <div className='objective'>
-                                        <label>Objetivo</label>
-                                        <textarea className='txtarea' cols="35" rows="8" placeholder='Escreva sobre seus objetivos na carreira e na empresa'></textarea>
-                                    </div>
-                                }
+                                    }
+                                />
 
-                            />
-
-
-                        </section>
-                        <div className='container-btn-form'>
-
-                            <button className='btn-save-form' type="submit">Salvar</button>
-                        </div>
-                        <div className='line'>
-
-                        </div>
-
-                    </form>
-
-
-                </div>
-                <div className='container-carousel'>
-                    <Carousel className='carousel' slidesToShow={1}
-
-                        cellAlign="center"
-                        defaultControlsConfig={{
-
-                            nextButtonText: '>',
-                            prevButtonText: '<',
-                            pagingDotsStyle: {
-                                margin: 5,
-                                fill: '#25b797'
-                            }
-                        }}>
-
-                        <div className='template1'>
-
-                            <div className='design-temp1'>
+                            </section>
+                            <div className='container-btn-form'>
+                                <button className='btn-save-form' type="submit">Salvar</button>
+                                <button className='btn-clean-form' onClick={cleanInpus}>Limpar</button>
                             </div>
-                            <div>
-
+                            <div className='line-style'>
                             </div>
-                            <div className='header-template-1'>
+                        </form>
+
+                        <div className='container-carousel-teste'>
+
+                            <Carousel slidesToShow={1}
+                                style={{ position: 'relative', }}
+                                cellAlign="center"
+                                defaultControlsConfig={{
+
+                                    nextButtonText: '.',
+                                    prevButtonText: '.',
+                                    prevButtonStyle: {
+                                        background: '#fff',
+
+                                        borderRadius: 20,
+                                        opacity: 0.1,
+                                        color: '#fff',
+                                        cursor: 'pointer',
+                                        height: 250
+                                    },
+
+                                    nextButtonStyle: {
+                                        background: '#fff',
+                                        borderRadius: 20,
+                                        opacity: 0.1,
+                                        color: '#fff',
+                                        cursor: 'pointer',
+                                        height: 250
+                                    },
+                                    pagingDotsStyle: {
+
+                                        margin: 5,
+                                        fill: '#fff',
+                                        position: 'static',
+                                        marginBottom: 120
+                                    }
+                                }}>
+
+                                <div>
+                                    <Templete1
+                                        nome={nome}
+                                        contato={contato}
+                                        endereco={endereco}
+                                        cidade={cidade}
+                                        textValue={textObective}
+                                        email={email}
+
+                                        XP={
+
+                                            <div style={{ display: 'flex', flexDirection: 'row', }}>
+
+                                                {inputField.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-xp'>
+                                                            <div>
+                                                                <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                                <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                                <span><strong>Período: </strong> {item.periodo}</span>
+                                                            </div>
+
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+
+                                        }
+                                    />
+                                    <Modal
+                                        isOpen={visibleModal}
+                                        //onRequestClose={fechaModal}
+                                        className='style-modal-temps'
+                                        overlayClassName={'overlay-modal-temps'}
+                                    >
+                                        <div className='container-temp1-view'>
 
 
-                                <div className='data-user-header'>
-                                    <div className='nome-temp1'>
-                                        <h5>Nome do usuario</h5>
-                                    </div>
+                                            <TempleteView1
+                                                nome={nome}
+                                                contato={contato}
+                                                endereco={endereco}
+                                                cidade={cidade}
+                                                textValue={textObective}
+                                                email={email}
 
-                                    <div className='info-user-temp1'>
-                                        <span><strong>Celular</strong> (00) 0 0000-0000</span>
-                                        <span><strong>Celular</strong> (00) 0 0000-0000</span>
-                                        <span><strong>E-mail</strong> user@gmail.com</span>
-                                        <span><strong>Cidade</strong> Manaus-Am</span>
-                                        <span><strong>Endereço</strong> Travessa Fantasia</span>
-                                    </div>
+                                                XP={
+                                                    <div style={{ display: 'flex', flexDirection: 'row', }}>
+                                                        {inputField.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-xp'>
+                                                                    <div>
+                                                                        <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                                        <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                                        <span><strong>Período: </strong> {item.periodo}</span>
+                                                                    </div>
+
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+
+                                                }
+
+
+                                            />
+
+                                            <div className='container-btn-modal'>
+                                                <button className='btn-close-modal' onClick={closeModal}>
+                                                    <AiOutlineClose color='#fff' size={25} />
+                                                </button>
+                                                <button className='styles-btn-options-modal'>
+                                                    <AiOutlineShareAlt color='#fff' size={25} />
+                                                </button>
+                                                <button className='styles-btn-options-modal'>
+                                                    <AiOutlinePrinter color='#fff' size={25} />
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </Modal>
+                                    <button className='btn-view-temp1' onClick={opModal}>Visualizar modelo</button>
                                 </div>
-                                <div className='photo-template'></div>
+                                <div>
+                                    <Templete2 />
+                                    <button className='btn-view-temp1' onClick={() => alert('teste')}>Visualizar modelo</button>
+                                </div>
 
-                            </div>
-                            <div>
+                                <Templete3 />
 
-                            </div>
+                            </Carousel>
 
                         </div>
-                        <div className='shere'>
-                            <h2>2</h2>
-                        </div>
-                        <div className='shere'>
-                            <h2>3</h2>
-                        </div>
-                        <div className='template1'>
-                            <h1>4</h1>
-                        </div>
-                        <div className='shere'>
-                            <h2>5</h2>
-                        </div>
-                        <div className='shere'>
-                            <h2>6</h2>
-                        </div>
-                    </Carousel>
+                    </div>
+                    <div>
+                    </div>
                 </div>
-                <div>
-                    teste
-                </div>
-
-
-
             </div>
-        </div>);
+        </div>
+    );
 }
