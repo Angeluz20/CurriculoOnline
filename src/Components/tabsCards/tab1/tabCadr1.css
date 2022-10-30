@@ -16,7 +16,10 @@ body{
     flex-direction: column;
     display: flex;
 }
-
+.select-marital-status{
+    background-color: #fff;
+    border-radius: 30px;
+}
 .inputName{
     width: 100%;
     outline: none;

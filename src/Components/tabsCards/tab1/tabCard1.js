@@ -26,7 +26,7 @@ export default function Tab1({
                 <input className='inputName' value={name} onChange={nameOnChange}></input>
 
                 <labe id='labelStyle'>Endereço</labe>
-                <input className='inputName' value={address} onChange={addressOnChange}></input>
+                <input className='inputName' placeholder='Rua Raio de Luz - N 333 -  Centro' value={address} onChange={addressOnChange}></input>
 
                 <labe id='labelStyle'>Telefone</labe>
                 <input className='inputName' type='tel' required="required" maxlength="15" placeholder="(00) 0 0000-0000" value={phone} onChange={phoneOnChange}></input>
@@ -36,7 +36,7 @@ export default function Tab1({
                 <div className='container-city-nasc'>
                     <div>
                         <labe id='labelStyle'>Cidade</labe>
-                        <input className='inputName' value={city} onChange={cityOnChange}></input>
+                        <input className='inputName' placeholder='Manaus-AM' value={city} onChange={cityOnChange}></input>
                     </div>
 
                     <div>
@@ -48,7 +48,7 @@ export default function Tab1({
 
 
             </div>
-            <select value={maritalStatus} onChange={maritalStatusOnChange}>
+            <select className='select-marital-status' value={maritalStatus} onChange={maritalStatusOnChange}>
 
                 <option value='Solteiro(a)'>
                     Solteiro(a)
@@ -65,8 +65,9 @@ export default function Tab1({
 
             </select>
 
-            <label>Gênero</label>
             <div>
+            <label style={{color:'#25b797', marginTop:10}}>Gênero:</label>
+
                 <input
                     type='radio'
                     name='radio'
