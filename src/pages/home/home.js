@@ -22,7 +22,9 @@ import TitlePages from '../../Components/titlePages/titlePages';
 import Modal from 'react-modal';
 import Tab1 from '../../Components/tabsCards/tab1/tabCard1';
 import TabExperiencia from '../../Components/tabsCards/tabExperiencia/tabXp';
-
+import TabProfile from '../../Components/tabsCards/tabProfile/tabProfile';
+import TabObjective from '../../Components/tabsCards/tabObjective/tabObjective';
+import differenceInBusinessDays from 'date-fns/fp/differenceInBusinessDays/index';
 const useStyles = makeStyles((theme) => ({
     root: {
         "& .MuiTextField-root": {
@@ -64,11 +66,12 @@ export default function Home() {
     const [listNameCurri, setListNameCurri] = useState([]);
     const [selectedNameCurri, setSelectedNameCurri] = useState(0);
     const [loadNameCurri, setLoadNameCurri] = useState(true);
-    const [idDocCustomer, setIdDocCustumer] = useState(false)
-    const [visibleModal, setVisibleModal] = useState(false)
-    const [valorInput, setValorInput] = useState([])
-    const [valorInputFormation, setValorInputFormation] = useState([])
-    const [email, setEmail] = useState('')
+    const [idDocCustomer, setIdDocCustumer] = useState(false);
+    const [visibleModal, setVisibleModal] = useState(false);
+    const [valorInput, setValorInput] = useState([]);
+    const [textProfile, setTextProfile] = useState('');
+    const [valorInputFormation, setValorInputFormation] = useState([]);
+    const [email, setEmail] = useState('');
     const [inputField, setInputField] = useState([{
         empresa: '', cargo: '', periodo: ''
     },]);
@@ -78,10 +81,12 @@ export default function Home() {
 
 
 
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
 
     useEffect(() => {
+          
+      
         async function loadNameCurri() {
             await firebase.firestore().collection('users')
                 .doc(user.uid).collection('registerNameCurriculo')
@@ -114,6 +119,7 @@ export default function Home() {
                 })
         }
         loadNameCurri()
+        
     }, [])
 
     async function loadId(lista) {
@@ -129,6 +135,7 @@ export default function Home() {
                 setContato(snapshot.data().contato)
                 setSelectedNameCurri(snapshot.data().selectedNameCurri)
                 setTextObjective(snapshot.data().textObective)
+                setTextProfile(snapshot.data().textProfile)
                 setInputField(snapshot.data().inputField)
                 setInputFormation(snapshot.data().inputFormation)
                 setEmail(snapshot.data().email)
@@ -159,7 +166,8 @@ export default function Home() {
                     textObective: textObective,
                     inputField: inputField,
                     email: email,
-                    inputFormation: inputFormation
+                    inputFormation: inputFormation,
+                    textProfile: textProfile
                 })
                 .then(() => {
                     toast.success('Informações atualizadas com sucesso!')
@@ -193,7 +201,8 @@ export default function Home() {
                     urlImgPhoto: null,
                     inputField: inputField,
                     email: email,
-                    inputFormation: inputFormation
+                    inputFormation: inputFormation,
+                    textProfile: textProfile
                 })
                 .then(() => {
                     // setNome('');
@@ -313,6 +322,12 @@ export default function Home() {
         console.log('inputs ', inputFormation)
         setValorInputFormation(inputFormation)
     }
+    function removeFormation(index) {
+
+        const values = [...inputFormation];
+        values.splice(index, 1);
+        setInputFormation(values)
+    }
     return (
         <div className='container-principal'>
 
@@ -326,38 +341,65 @@ export default function Home() {
 
                         <div className='container-register-name-curri'>
 
-                            <form onSubmit={handleRegisterCurri}>
+                            <div>
+                                <div className='box-form-guia'>
+
+                                    <h5>  <span className='box-animate-guia'></span>
+                                        Guia
+                                        <span className='box-animate-guia'></span>
+
+                                    </h5>
+                                </div>
                                 <div className='guia' onClick={() => alert('teste')}>
                                     <div className='btn-guide'><FaAddressBook color='#28282a' size={70} /></div>
                                     <label>Guia</label>
                                 </div>
-                                <div className='view-input-nameCurri-register'>
-                                    <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
-                                    <button type='submit' className='btn-register-name-curri'>Cadastar</button>
-                                </div>
 
-                                <div className='select-name'>
-                                    <label>Currículos cadastrados</label>
-                                    <select className='select-name-register' value={selectedNameCurri} onChange={nomeSelecionado}>
-                                        {listNameCurri.map((item, index) => {
-                                            return (
-                                                <option key={item.id} value={index}>
-                                                    {item.nomeCurri}
-                                                </option>
-                                            )
-                                        })}
-                                    </select>
+                                <form onSubmit={handleRegisterCurri} >
+                                    <div className='box-form-register-curriculo'>
 
-                                </div>
+                                        <h5>  <span className='box-line-regiser-curriculo'></span>
+                                            Cadastrar nome do currículo
+                                            <span className='box-line-regiser-curriculo'></span>
 
-                            </form>
+                                        </h5>
+                                    </div>
+                                    {/* <div className='box-form-register-curriculo'><h5></h5></div> */}
+                                    <div className='form-register-name-curriculo'>
+                                        <div className='view-input-nameCurri-register'>
+                                            <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
+                                            <button type='submit' className='btn-register-name-curri'>Cadastrar</button>
+                                        </div>
 
+                                        <div className='select-name'>
+                                            <label>Currículos cadastrados</label>
+                                            <select className='select-name-register' value={selectedNameCurri} onChange={nomeSelecionado}>
+                                                {listNameCurri.map((item, index) => {
+                                                    return (
+                                                        <option key={item.id} value={index}>
+                                                            {item.nomeCurri}
+                                                        </option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
 
 
 
                         <form onSubmit={handleSave} autocomplete="off">
-
+                            <div className='box-form'>
+                                <h5>
+                                <span className='box-line-form'></span>
+                                    Formulário
+                                <span className='box-line-form'></span>
+                                </h5>
+                                
+                                </div>
                             <section className='form'>
                                 <TabsCards
                                     cabecalho={
@@ -389,17 +431,23 @@ export default function Home() {
                                         </>
 
                                     }
-                                    objective={
+                                    Profile={
+                                        <>
+                                            <TabProfile
+                                                textProfileValue={textProfile}
+                                                onChangeProfile={(e) => setTextProfile(e.target.value)}
+                                            />
+                                        </>
 
-                                        <div className='objective'>
-                                            <label>Objetivo</label>
-                                            <textarea value={textObective} onChange={(e) => setTextObjective(e.target.value)}
-                                                className='txtarea'
-                                                cols="35"
-                                                rows="8"
-                                                placeholder='Escreva sobre seus objetivos na carreira e na empresa'>
-                                            </textarea>
-                                        </div>
+                                    }
+                                    objective={
+                                        <>
+                                            <TabObjective
+                                                textObectiveValue={textObective}
+                                                onChangeObjective={(e) => setTextObjective(e.target.value)}
+                                            />
+                                        </>
+
                                     }
 
                                     xp={
@@ -426,48 +474,51 @@ export default function Home() {
                                         </div>
                                     }
                                     formation={
-                                        <div>
+                                        <div className='container-cursos'>
+                                            <label>Formação</label>
                                             {inputFormation.map((item, index) => {
                                                 return (
-                                                    <div key={index}>
-                                                        <input
-                                                            name='nome'
-                                                            label="Nome"
-                                                            value={item.nome}
-                                                            variant="standard"
-                                                            placeholder='Nome do curso'
-                                                            autocomplete="off"
-                                                            onChange={(e) => handleChangeFormation(index, e)}
-                                                        />
+                                                    <div className='cursos' key={index}>
+                                                        <div className='input-formation'>
+                                                            <input
+                                                                name='nome'
+                                                                label="Nome"
+                                                                value={item.nome}
+                                                                variant="standard"
+                                                                placeholder='Nome do curso'
+                                                                autocomplete="off"
+                                                                onChange={(e) => handleChangeFormation(index, e)}
+                                                            />
 
-                                                        <input
-                                                            name='status'
-                                                            label="status"
-                                                            value={item.status}
-                                                            variant="standard"
-                                                            placeholder='Status do curso'
-                                                            autocomplete="off"
-                                                            onChange={(e) => handleChangeFormation(index, e)}
-                                                        />
+                                                            <input
+                                                                name='status'
+                                                                label="status"
+                                                                value={item.status}
+                                                                variant="standard"
+                                                                placeholder='Status do curso'
+                                                                autocomplete="off"
+                                                                onChange={(e) => handleChangeFormation(index, e)}
+                                                            />
 
-                                                        <input
-                                                            name='instituicao'
-                                                            label="instituicao"
-                                                            value={item.instituicao}
-                                                            placeholder="Instituicao"
-                                                            autocomplete="off"
-                                                            onChange={(e) => handleChangeFormation(index, e)}
-                                                        />
-                                                        <input
-                                                            name='cargaHoraria'
-                                                            label="cargaHoraria"
-                                                            value={item.cargaHoraria}
-                                                            placeholder="Carga Horária"
-                                                            autocomplete="off"
-                                                            onChange={(e) => handleChangeFormation(index, e)}
-                                                        />
-                                                        <button onClick={saveFormation}>save</button>
-                                                        <button onClick={addFormation}>add</button>
+                                                            <input
+                                                                name='instituicao'
+                                                                label="instituicao"
+                                                                value={item.instituicao}
+                                                                placeholder="Instituicao"
+                                                                autocomplete="off"
+                                                                onChange={(e) => handleChangeFormation(index, e)}
+                                                            />
+                                                            <input
+                                                                name='cargaHoraria'
+                                                                label="cargaHoraria"
+                                                                value={item.cargaHoraria}
+                                                                placeholder="Carga Horária"
+                                                                autocomplete="off"
+                                                                onChange={(e) => handleChangeFormation(index, e)}
+                                                            />
+                                                            <button style={{ padding: 10, borderRadius: 30, border: 'none', height: 40, marginTop: 10 }} onClick={removeFormation}>-</button>
+                                                            <button style={{ padding: 10, borderRadius: 30, border: 'none', height: 40, marginTop: 10, marginLeft: 10 }} onClick={addFormation}>+</button>
+                                                        </div>
                                                     </div>
                                                 )
                                             })}
@@ -487,7 +538,13 @@ export default function Home() {
                         </form>
 
                         <div className='container-carousel-teste'>
-
+                            <div className='box-templates'>
+                                <h5>
+                                     <span className='box-line-templates'></span>
+                                        Templetes
+                                     <span className='box-line-templates'></span>
+                                </h5>
+                            </div>
                             <Carousel slidesToShow={1}
                                 style={{ position: 'relative', }}
                                 cellAlign="center"
@@ -528,9 +585,28 @@ export default function Home() {
                                         contato={contato}
                                         endereco={endereco}
                                         cidade={cidade}
+                                        textProfile={textProfile}
                                         textValue={textObective}
                                         email={email}
+                                        Formation={
+                                            <div style={{ display: 'flex', flexDirection: 'row' }}>
 
+                                                {inputFormation.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-formation'>
+                                                            <div>
+                                                                <span><strong>Curso: </strong> {item.nome}</span>
+                                                                <span><strong>Status: </strong> {item.status}</span>
+                                                                <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                <span><strong>Carga Horária: </strong> {item.cargaHoraria}</span>
+
+
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        }
                                         XP={
 
                                             <div style={{ display: 'flex', flexDirection: 'row', }}>
@@ -565,14 +641,33 @@ export default function Home() {
                                                 contato={contato}
                                                 endereco={endereco}
                                                 cidade={cidade}
-                                                textValue={textObective}
-                                                email={email}
+                                                textProfile={textProfile}
+                                                textObjective={textObective}
+                                                Formation={
+                                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
 
+                                                    {inputFormation.map((item, index) => {
+                                                        return (
+                                                            <div key={index} className='row-formation'>
+                                                                <div>
+                                                                    <span><strong>Curso: </strong> {item.nome}</span>
+                                                                    <span><strong>Status: </strong> {item.status}</span>
+                                                                    <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                    <span><strong>Carga Horária: </strong> {item.cargaHoraria}</span>
+    
+    
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                                }
+                                                email={email}
                                                 XP={
                                                     <div style={{ display: 'flex', flexDirection: 'row', }}>
                                                         {inputField.map((item, index) => {
                                                             return (
-                                                                <div key={index} className='row-xp'>
+                                                                <div key={index} className='row-xp-temp1'>
                                                                     <div>
                                                                         <span><strong>Empresa: </strong> {item.empresa}</span>
                                                                         <span><strong>Cargo: </strong> {item.cargo}</span>
