@@ -10,7 +10,7 @@ import { FaUserTie, FaUserGraduate } from 'react-icons/fa'
 import { GiStairsGoal } from 'react-icons/gi'
 import { IoSchoolSharp } from 'react-icons/io5'
 
-export default function TempleteView1({ nome, contato, endereco, cidade, email, textValue, XP }) {
+export default function TempleteView1({ Formation, nome, contato, endereco, cidade, email, textProfile, XP, textObjective }) {
   const { user, signOut } = useContext(AuthContext);
   const componentRef = useRef();
   const [dimensions, setDimensions] = useState({ width: 320, height: 420 });
@@ -35,6 +35,7 @@ export default function TempleteView1({ nome, contato, endereco, cidade, email, 
 
 
       <div className='header-template-view-1' >
+
         <div className='design-temp-view-1'>
           <div >
 
@@ -61,42 +62,41 @@ export default function TempleteView1({ nome, contato, endereco, cidade, email, 
         </div>
 
       </div>
-    
-      <div className='objective'>
+      <div className='container-form-temp-view-1'>
+
+      <div className='container-informacoes-user-view-1'>
         <div className='label-info'>
           <label><FaUserTie color='#106561' size={15} /> Perfil<span/></label>
          
-          
-      
         </div>
         <div className='text-objctive'>
-              <span>{textValue}</span>
+              <span>{textProfile}</span>
             </div>
       </div>
 
-      <div className='objective'>
+      <div className='container-informacoes-user-view-1e'>
         <div className='label-info'>
           <label> <GiStairsGoal color='#106561' size={15} /> Objetivo  <span /></label>
 
         </div>
 
         <div className='text-objctive'>
-          <span></span>
+          <span>{textObjective} </span>
         </div>
       </div>
 
-      <div className='objective'>
+      <div className='container-informacoes-user-view-1'>
         <div className='label-info'>
           <label> <FaUserGraduate color='#106561' size={15} /> Formação</label>
           <span />
         </div>
 
         <div className='text-objctive'>
-          <span> </span>
+        <div>{Formation}</div>
         </div>
       </div>
 
-      <div className='objective'>
+      <div className='container-informacoes-user-view-1'>
         <div className='label-info'>
           <label><IoSchoolSharp color='#106561' size={15} /> Cursos profissionalizantes</label>
           <span />
@@ -107,7 +107,7 @@ export default function TempleteView1({ nome, contato, endereco, cidade, email, 
         </div>
       </div>
 
-      <div className='objective'>
+      <div className='container-informacoes-user-view-1'>
         <div className='label-info'>
           <label>Expreriência Profissional</label>
           <span />
@@ -121,6 +121,6 @@ export default function TempleteView1({ nome, contato, endereco, cidade, email, 
 
 
     </div>
-
+</div>
   );
 }
