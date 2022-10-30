@@ -94,11 +94,14 @@ export default function EditCurriculo() {
       .doc(user.uid).collection('curriculosName').doc(id)
       .delete()
       .then(() => {
+        
         toast.success('Currículo excluido com sucesso!')
       })
       .catch((err) => {
         toast.error('Ops, algo deu errado', err)
       })
+
+    
   }
   function abreModal(item) {
     //console.log(item)
