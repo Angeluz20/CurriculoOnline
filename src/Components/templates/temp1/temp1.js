@@ -11,7 +11,7 @@ import { FaUserTie, FaUserGraduate } from 'react-icons/fa'
 import { GiStairsGoal } from 'react-icons/gi'
 import { IoSchoolSharp } from 'react-icons/io5'
 
-export default function Templete1({ nome, contato, endereco, cidade, email, textValue, XP }) {
+export default function Templete1({ nome, contato, endereco, cidade, email, textValue, XP, textProfile, Formation }) {
   const { user, signOut } = useContext(AuthContext);
   const componentRef = useRef();
   const [dimensions, setDimensions] = useState({ width: 320, height: 420 });
@@ -64,11 +64,12 @@ export default function Templete1({ nome, contato, endereco, cidade, email, text
       </div>
     <div className='container-form-temp-1'>
       <div className='container-informacoes-user-1'>
+     
         <div className='label-info-mini-temp'>
           <label><FaUserTie color='#106561' size={10} /> Perfil</label>
         </div>
         <div className='text-objctive-temp1'>
-              <span>{textValue}</span>
+              <span>{textProfile}</span>
             </div>
       </div>
 
@@ -80,7 +81,7 @@ export default function Templete1({ nome, contato, endereco, cidade, email, text
         </div>
 
         <div className='text-objctive-temp1'>
-          <span></span>
+          <span>{textValue}</span>
         </div>
       </div>
 
@@ -91,7 +92,7 @@ export default function Templete1({ nome, contato, endereco, cidade, email, text
         </div>
 
         <div className='text-objctive-temp1'>
-          <span> </span>
+          <div>{Formation}</div>
         </div>
       </div>
 
