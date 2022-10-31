@@ -4,11 +4,11 @@ import { AuthContext } from '../../../contexts/auth';
 import { useReactToPrint } from 'react-to-print';
 import avatar from '../../../img/avatar.png'
 
-import { BsTelephone } from 'react-icons/bs'
+import { BsTelephone, BsFillGearFill } from 'react-icons/bs'
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi'
 import { MdOutlineOtherHouses } from 'react-icons/md'
-import { FaUserTie, FaUserGraduate } from 'react-icons/fa'
-import { GiStairsGoal } from 'react-icons/gi'
+import { FaUserTie, FaUserGraduate  } from 'react-icons/fa'
+import { GiStairsGoal, GiDoorRingHandle } from 'react-icons/gi'
 import { IoSchoolSharp } from 'react-icons/io5'
 
 export default function Templete1({ 
@@ -118,7 +118,7 @@ export default function Templete1({
 
       <div className='container-informacoes-user-1'>
         <div className='label-info-mini-temp'>
-          <label>Expreriência Profissional</label>
+          <label>  < BsFillGearFill color='#106561' size={10} /> Expreriência Profissional</label>
         
         </div>
 
