@@ -10,9 +10,10 @@ export default function Footer() {
             <hr />
             <div> 
                 <div className='social-btns'>
-                      <FiInstagram color='#525255' size={25} />
-                      <RiLinkedinBoxLine color='#525255' size={30} />
-                      <FiGithub color='#525255' size={25} />
+                      
+                      <a href='https://www.instagram.com/angeluzj27/'><FiInstagram color='#525255' size={25} /></a> 
+                       <a href='https://www.linkedin.com/in/est%C3%AAv%C3%A3o-a-11268910b/'> <RiLinkedinBoxLine color='#525255' size={30} /></a>
+                      <a href='https://github.com/Angeluz20'>  <FiGithub color='#525255' size={25} /> </a>
                 </div>
                
 
