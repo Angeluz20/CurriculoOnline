@@ -432,7 +432,13 @@ width: 100%;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 350px;
+    background-color: #37373a;
+    overflow-y: scroll;
 }
+.main-XP::-webkit-scrollbar{ 
+    background-color: #1c1c1e00;
+  }
 .row-xp{
     display: flex;
     flex-direction: row;
@@ -454,6 +460,29 @@ width: 100%;
    flex-direction: row;
    font-size: 6px;
    font-family: 'Varela Round', sans-serif;
+   width: 90px;
+}
+.row-xp-view-2{
+    display: flex;
+    flex-direction: row;
+    width:60px;
+    justify-content: center;
+    margin-left: 35px;
+    align-items: center;
+   
+}
+.row-xp-view-2 > div{
+   margin-top: 5px;
+   height: 40px;
+   display: flex;
+   flex-direction: column;
+   width: 200px;
+ }
+.row-xp-view-2 > div> span{
+   display: flex;
+   flex-direction: row;
+   font-size: 8px;
+   font-family: 'Varela Round', sans-serif;
 }
 .row-formation-view{
     display: flex;
@@ -473,6 +502,29 @@ width: 100%;
     margin-top: -2px;
   }
   .row-formation-view > div> span{
+    display: flex;
+    flex-direction: row;
+    font-size: 8px;
+    font-family: 'Varela Round', sans-serif;
+ }
+ .row-formation-view-2{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    justify-content: center;
+   
+    align-items: center;
+    margin-right: -20px;
+}
+.row-formation-view-2 > div{
+    margin-top: 5px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    margin-top: -2px;
+  }
+  .row-formation-view-2 > div> span{
     display: flex;
     flex-direction: row;
     font-size: 8px;
@@ -530,6 +582,28 @@ width: 100%;
     align-items: center;
     margin-right: -20px;
 }
+.row-cursos-view-2> div{
+    margin-top: 5px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    margin-top: -3px;
+  }
+  .row-cursos-view-2> div> span{
+    display: flex;
+    flex-direction: row;
+    font-size: 8px;
+    font-family: 'Varela Round', sans-serif;
+ }
+ .row-cursos-view{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    margin-right: -20px;
+}
 .row-cursos-view> div{
     margin-top: 5px;
     height: 20px;
@@ -544,12 +618,13 @@ width: 100%;
     font-size: 8px;
     font-family: 'Varela Round', sans-serif;
  }
+ 
 .row-xp-temp1{
     display: flex;
     flex-direction: row;
-    width:60px;
+    width:70px;
     justify-content: center;
-    margin-left: 30px;
+    margin-left: 40px;
     align-items: center;
     margin-right: -20px;
     margin-top: 10px;
@@ -558,14 +633,15 @@ width: 100%;
    height: 55px; 
    display: flex;
    flex-direction: column;
-   width: 100%;
-   
+   width: 280px;
+
  }
  .row-xp-temp1> div> span{
    display: flex;
    flex-direction: row;
    font-size: 7px;
    font-family: 'Varela Round', sans-serif;
+   width: 90px;
 }
 .manual{
     width: 170px;
@@ -707,6 +783,7 @@ width: 100%;
     padding: 5px;
     margin-top: 15px;
  }
+ 
 .cursos{
 
     border-radius: 10px;

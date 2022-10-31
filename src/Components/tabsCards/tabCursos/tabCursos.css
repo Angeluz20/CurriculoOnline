@@ -1,0 +1,35 @@
+.cursos{
+
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center; 
+    display: flex;
+    justify-content: center;
+    background-color:#414145;
+    height: 210px;
+    padding: 10px;
+    width: 100%;
+    margin-top:10px;
+ 
+  }
+
+  .container-cursos::-webkit-scrollbar{ 
+    background-color: #1c1c1e00;
+  }
+
+.input-cursos{
+      
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+    
+  }
+  .input-cursos > input{ 
+    width: 100%;
+    height: 25px;
+    background-color:#fff;
+    outline: none;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+  }

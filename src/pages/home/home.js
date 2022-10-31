@@ -8,7 +8,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { IconButton, TextField, Button, makeStyles, Box } from '@material-ui/core';
 import { MdAddCircleOutline } from 'react-icons/md'
 import { BsPlusCircleFill } from 'react-icons/bs'
-
 import { TiDelete } from 'react-icons/ti'
 import { AiOutlineShareAlt, AiOutlinePrinter, AiOutlineClose } from 'react-icons/ai'
 
@@ -27,6 +26,8 @@ import Tab1 from '../../Components/tabsCards/tab1/tabCard1';
 import TabExperiencia from '../../Components/tabsCards/tabExperiencia/tabXp';
 import TabProfile from '../../Components/tabsCards/tabProfile/tabProfile';
 import TabObjective from '../../Components/tabsCards/tabObjective/tabObjective';
+import TabFormation from '../../Components/tabsCards/tabFormation/tabFormation';
+import TabCursos from '../../Components/tabsCards/tabCursos/tabCursos';
 import Manual from '../../img/manual.svg'
 import passo1 from '../../img/passo1.jpg'
 import passo2 from '../../img/passo2.jpg'
@@ -459,7 +460,7 @@ export default function Home() {
 
                                         </h5>
                                     </div>
-                                    {/* <div className='box-form-register-curriculo'><h5></h5></div> */}
+
                                     <div className='form-register-name-curriculo'>
                                         <div className='view-input-nameCurri-register'>
                                             <input typr='text' value={nomeCurri} onChange={(e) => setNomeCurri(e.target.value)} className='name-curri' placeholder='Dê um nome ao seu currículo'></input>
@@ -574,34 +575,15 @@ export default function Home() {
                                                 <label>Formação</label>
                                                 {inputFormation.map((item, index) => {
                                                     return (
-                                                        <div className='formation' key={index}>
-                                                            <div className='input-formation'>
-                                                                <label>Nome do Curso</label>
-                                                                <input
-                                                                    name='nome'
-                                                                    label="Nome"
-                                                                    value={item.nome}
-                                                                    variant="standard"
-                                                                    placeholder='Nome do curso'
-                                                                    autocomplete="off"
-                                                                    onChange={(e) => handleChangeFormation(index, e)}
-                                                                />
-                                                                <label>Instituição</label>
-                                                                <input
-                                                                    name='instituicao'
-                                                                    label="instituicao"
-                                                                    value={item.instituicao}
-                                                                    placeholder="Instituicao"
-                                                                    autocomplete="off"
-                                                                    onChange={(e) => handleChangeFormation(index, e)}
-                                                                />
+                                                        <TabFormation
+                                                            index={index}
+                                                            valueName={item.nome}
+                                                            valueInstituicao={item.instituicao}
+                                                            onChangeFormation={(e) => handleChangeFormation(index, e)}
+                                                            addFormation={addFormation}
+                                                            removeFormation={removeFormation}
+                                                        />
 
-                                                                <div>
-                                                                    <button style={{ border: 'none', background: 'none' }} onClick={addFormation} > <BsPlusCircleFill color='#87cefa' size={25} /></button>
-                                                                    <button style={{ border: 'none', background: 'none' }} onClick={removeFormation}><TiDelete color='#FF6B00' size={40} /></button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     )
                                                 })}
 
@@ -614,43 +596,17 @@ export default function Home() {
                                                 <label>Cursos</label>
                                                 {inputCursos.map((item, index) => {
                                                     return (
-                                                        <div className='cursos' key={index}>
-                                                            <div className='input-cursos'>
-                                                                <label>Nome do Curso</label>
-                                                                <input
-                                                                    name='nome'
-                                                                    label="Nome"
-                                                                    value={item.nome}
-                                                                    variant="standard"
-                                                                    placeholder='Nome do curso'
-                                                                    autocomplete="off"
-                                                                    onChange={(e) => handleChangeCursos(index, e)}
-                                                                />
-                                                                <label>Instituição</label>
-                                                                <input
-                                                                    name='instituicao'
-                                                                    label="instituicao"
-                                                                    value={item.instituicao}
-                                                                    placeholder="Instituicao"
-                                                                    autocomplete="off"
-                                                                    onChange={(e) => handleChangeCursos(index, e)}
-                                                                />
-                                                                <label>Carga Horária</label>
-                                                                <input
-                                                                    name='cargaHoraria'
-                                                                    label="cargaHoraria"
-                                                                    value={item.cargaHoraria}
-                                                                    placeholder="Carga Horária"
-                                                                    autocomplete="off"
-                                                                    onChange={(e) => handleChangeCursos(index, e)}
-                                                                />
+                                                        <TabCursos
+                                                            index={index}
+                                                            valueName={item.nome}
+                                                            valueInstituicao={item.instituicao}
+                                                            valueCargaHoraria={item.cargaHoraria}
+                                                            onChangeCursos={(e) => handleChangeCursos(index, e)}
+                                                            addCursos={addCursos}
+                                                            removeCursos={removeCursos}
+                                                        />
 
-                                                                <div>
-                                                                    <button style={{ border: 'none', background: 'none' }} onClick={addCursos} > <BsPlusCircleFill color='#87cefa' size={25} /></button>
-                                                                    <button style={{ border: 'none', background: 'none' }} onClick={removeCursos}><TiDelete color='#FF6B00' size={40} /></button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
                                                     )
                                                 })}
 
@@ -720,7 +676,7 @@ export default function Home() {
                                         textValue={textObective}
                                         email={email}
                                         Cursos={
-                                            <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
+                                            <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px' }}>
 
                                                 {inputCursos.map((item, index) => {
                                                     return (
@@ -770,7 +726,7 @@ export default function Home() {
 
                                         }
                                     />
-                                    
+
                                     <Modal
                                         isOpen={visibleModal}
                                         //onRequestClose={fechaModal}
@@ -789,23 +745,23 @@ export default function Home() {
                                                 textObjective={textObective}
                                                 email={email}
                                                 Cursos={
-                                                    <div style={{ display: 'flex', flexDirection: 'row', width: 150, height: '40px'}}>
+                                                    <div style={{ display: 'flex', flexDirection: 'row', width: 150, height: '40px' }}>
 
-                                                    {inputCursos.map((item, index) => {
-                                                        return (
-                                                            <div key={index} className='row-cursos-view'>
-                                                                <div>
-                                                                    <span><strong>Curso: </strong> {item.nome}</span>
-                                                                    <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                                    <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                        {inputCursos.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-cursos-view'>
+                                                                    <div>
+                                                                        <span><strong>Curso: </strong> {item.nome}</span>
+                                                                        <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                        <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
                                                 }
                                                 Formation={
-                                                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px'  }}>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
 
                                                         {inputFormation.map((item, index) => {
                                                             return (
@@ -863,67 +819,67 @@ export default function Home() {
                                 </div>
                                 <div>
                                     <Templete2
-                                     nome={nome}
-                                     contato={contato}
-                                     endereco={endereco}
-                                     cidade={cidade}
-                                     textProfile={textProfile}
-                                     textValue={textObective}
-                                     email={email}
-                                     estadoCivil={estadoCivil}
-                                     nascimento={nasc}
-                                     Cursos={
-                                         <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
+                                        nome={nome}
+                                        contato={contato}
+                                        endereco={endereco}
+                                        cidade={cidade}
+                                        textProfile={textProfile}
+                                        textValue={textObective}
+                                        email={email}
+                                        estadoCivil={estadoCivil}
+                                        nascimento={nasc}
+                                        Cursos={
+                                            <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px' }}>
 
-                                             {inputCursos.map((item, index) => {
-                                                 return (
-                                                     <div key={index} className='row-cursos'>
-                                                         <div>
-                                                             <span><strong>Curso: </strong> {item.nome}</span>
-                                                             <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                             <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
-                                                         </div>
-                                                     </div>
-                                                 )
-                                             })}
-                                         </div>
-                                     }
-                                     Formation={
-                                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
+                                                {inputCursos.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-cursos'>
+                                                            <div>
+                                                                <span><strong>Curso: </strong> {item.nome}</span>
+                                                                <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        }
+                                        Formation={
+                                            <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
 
-                                             {inputFormation.map((item, index) => {
-                                                 return (
-                                                     <div key={index} className='row-formation'>
-                                                         <div>
-                                                             <span><strong>Curso: </strong> {item.nome}</span>
-                                                             <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                         </div>
-                                                     </div>
-                                                 )
-                                             })}
-                                         </div>
-                                     }
-                                     XP={
+                                                {inputFormation.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-formation'>
+                                                            <div>
+                                                                <span><strong>Curso: </strong> {item.nome}</span>
+                                                                <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        }
+                                        XP={
 
-                                         <div style={{ display: 'flex', flexDirection: 'row', }}>
+                                            <div style={{ display: 'flex', flexDirection: 'row', }}>
 
-                                             {inputField.map((item, index) => {
-                                                 return (
-                                                     <div key={index} className='row-xp'>
-                                                         <div>
-                                                             <span><strong>Empresa: </strong> {item.empresa}</span>
-                                                             <span><strong>Cargo: </strong> {item.cargo}</span>
-                                                             <span><strong>Período: </strong> {item.periodo}</span>
-                                                         </div>
+                                                {inputField.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-xp'>
+                                                            <div>
+                                                                <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                                <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                                <span><strong>Período: </strong> {item.periodo}</span>
+                                                            </div>
 
-                                                     </div>
-                                                 )
-                                             })}
-                                         </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
 
-                                     }
+                                        }
                                     />
-                                      <Modal
+                                    <Modal
                                         isOpen={visibleModalTemp2}
                                         //onRequestClose={fechaModal}
                                         className='style-modal-temps'
@@ -933,63 +889,63 @@ export default function Home() {
 
 
                                             <TempleteView2
-                                                 nome={nome}
-                                                 contato={contato}
-                                                 endereco={endereco}
-                                                 cidade={cidade}
-                                                 textProfile={textProfile}
-                                                 textValue={textObective}
-                                                 email={email}
-                                                 estadoCivil={estadoCivil}
-                                                 nascimento={nasc}
-                                                 Cursos={
-                                                     <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
-            
-                                                         {inputCursos.map((item, index) => {
-                                                             return (
-                                                                 <div key={index} className='row-cursos'>
-                                                                     <div>
-                                                                         <span><strong>Curso: </strong> {item.nome}</span>
-                                                                         <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                                         <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
-                                                                     </div>
-                                                                 </div>
-                                                             )
-                                                         })}
-                                                     </div>
-                                                 }
-                                                 Formation={
-                                                     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
-            
-                                                         {inputFormation.map((item, index) => {
-                                                             return (
-                                                                 <div key={index} className='row-formation'>
-                                                                     <div>
-                                                                         <span><strong>Curso: </strong> {item.nome}</span>
-                                                                         <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                                     </div>
-                                                                 </div>
-                                                             )
-                                                         })}
-                                                     </div>
-                                                 }
-                                                 XP={
-            
-                                                     <div style={{ display: 'flex', flexDirection: 'row', }}>
-            
-                                                         {inputField.map((item, index) => {
-                                                             return (
-                                                                 <div key={index} className='row-xp'>
-                                                                     <div>
-                                                                         <span><strong>Empresa: </strong> {item.empresa}</span>
-                                                                         <span><strong>Cargo: </strong> {item.cargo}</span>
-                                                                         <span><strong>Período: </strong> {item.periodo}</span>
-                                                                     </div>
-            
-                                                                 </div>
-                                                             )
-                                                         })}
-                                                     </div>
+                                                nome={nome}
+                                                contato={contato}
+                                                endereco={endereco}
+                                                cidade={cidade}
+                                                textProfile={textProfile}
+                                                textValue={textObective}
+                                                email={email}
+                                                estadoCivil={estadoCivil}
+                                                nascimento={nasc}
+                                                Cursos={
+                                                    <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px' }}>
+
+                                                        {inputCursos.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-cursos-view-2'>
+                                                                    <div>
+                                                                        <span><strong>Curso: </strong> {item.nome}</span>
+                                                                        <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                        <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                }
+                                                Formation={
+                                                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
+
+                                                        {inputFormation.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-formation-view-2'>
+                                                                    <div>
+                                                                        <span><strong>Curso: </strong> {item.nome}</span>
+                                                                        <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                }
+                                                XP={
+
+                                                    <div style={{ display: 'flex', flexDirection: 'row', }}>
+
+                                                        {inputField.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-xp-view-2'>
+                                                                    <div>
+                                                                        <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                                        <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                                        <span><strong>Período: </strong> {item.periodo}</span>
+                                                                    </div>
+
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
 
                                                 }
 
@@ -1016,7 +972,7 @@ export default function Home() {
                                     <button className='btn-view-temp1' onClick={openModalTemplate2}>Visualizar modelo</button>
                                 </div>
 
-                         
+
 
                             </Carousel>
 

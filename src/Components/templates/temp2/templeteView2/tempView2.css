@@ -116,9 +116,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 6.2px;
-
-    width: 130px;
+    font-size: 8.2px;
+    width: 180px;
 }
 
 /* ///////////////////////////// div obetivo/////////////////////////////// */
@@ -141,7 +140,7 @@
 }
 .label-info-mini-temp-view-2 > label{
    
-   font-size: 9px;
+   font-size: 11px;
    color: rgb(76, 10, 123);
    margin-left:30px;
    font-family: 'Saira', sans-serif;
@@ -165,7 +164,7 @@
  .text-objctive-temp-view-2>span{
     display: flex;
     text-align: justify;
-    font-size: 6px;
+    font-size: 9px;
     margin-left: 32px;
     margin-right: 25px;
     margin-bottom: -43px;
