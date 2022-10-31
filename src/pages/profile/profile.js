@@ -95,10 +95,17 @@ export default function Profile() {
   return (
     <div >
       <Header />
-    {/* <TitlePages title={'Perfil'}/> */}
+      {/* <TitlePages title={'Perfil'}/> */}
 
       <div className='container-main-profile'>
-      
+        <div className='box-container-profile'>
+
+          <h5>  <span className='box-line-profile'></span>
+            Perfil
+            <span className='box-line-profile'></span>
+
+          </h5>
+        </div>
         <div className='container-profile'>
           <div className='style-card-avatar'>
             <form className='form-avatar' onSubmit={HandleSave}>
@@ -122,7 +129,7 @@ export default function Profile() {
             {/* <div className='title-profile'>
                <h1 style={{color:'#fff'}}>Perfil</h1>
             </div> */}
-           
+
             <div className='info-user' >
               <label className='label'>Nome</label>
               <input type='text' value={nome} onChange={(e) => setNome(e.target.value)} className='input' />
