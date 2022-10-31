@@ -11,8 +11,19 @@ import { FaUserTie, FaUserGraduate } from 'react-icons/fa'
 import { GiStairsGoal } from 'react-icons/gi'
 import { IoSchoolSharp } from 'react-icons/io5'
 
-export default function Templete1({ nome, contato, endereco, cidade, email, textValue, XP, textProfile, Formation }) {
-  const { user, signOut } = useContext(AuthContext);
+export default function Templete1({ 
+  nome, 
+  contato, 
+  endereco, 
+  cidade, 
+  email, 
+  textValue, 
+  XP, 
+  textProfile, 
+  Formation, 
+  Cursos 
+}) {
+  const { user } = useContext(AuthContext);
   const componentRef = useRef();
   const [dimensions, setDimensions] = useState({ width: 320, height: 420 });
   const handlePrint = useReactToPrint({
@@ -27,7 +38,6 @@ export default function Templete1({ nome, contato, endereco, cidade, email, text
     documentTitle: 'currículo'
   });
 
-  //993547968
   return (
     <div className='template-1' >
 
@@ -92,30 +102,29 @@ export default function Templete1({ nome, contato, endereco, cidade, email, text
         </div>
 
         <div className='text-objctive-temp1'>
-          <div>{Formation}</div>
+         <span>{Formation}</span> 
         </div>
       </div>
 
       <div className='container-informacoes-user-1'>
         <div className='label-info-mini-temp'>
           <label><IoSchoolSharp color='#106561' size={10} /> Cursos profissionalizantes</label>
-          <span />
         </div>
 
         <div className='text-objctive-temp1'>
-          <span></span>
+          <span>{Cursos}</span>
         </div>
       </div>
 
       <div className='container-informacoes-user-1'>
         <div className='label-info-mini-temp'>
           <label>Expreriência Profissional</label>
-          <span />
+        
         </div>
 
-        <div>
+        <span>
           {XP}
-        </div>
+        </span>
       </div>
 
       </div>
