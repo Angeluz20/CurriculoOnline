@@ -41,7 +41,7 @@ export default function EditCurriculo() {
   async function nomesCurriculos() {
 
     await listRef
-      .doc(user.uid).collection('curriculosName').orderBy('created', 'asc').limit(4)
+      .doc(user.uid).collection('curriculosName').orderBy('created', 'asc').limit(6)
       .get()
       .then((snapshot) => {
         updateState(snapshot)
