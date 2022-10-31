@@ -1,43 +1,58 @@
 import React from 'react';
 import { MdAddCircleOutline } from 'react-icons/md'
-import { TiDeleteOutline } from 'react-icons/ti'
+import { BsPlusCircleFill } from 'react-icons/bs'
+import { TiDelete } from 'react-icons/ti'
+//
 import '../tabExperiencia/tabXp.css'
 
-export default function TabExperiencia({valueEmpresa, valueCargo,valuePeriodo,onChangeXP, addXP, removeXP}) {
+export default function TabExperiencia({ valueEmpresa, valueCargo, valuePeriodo, onChangeXP, addXP, removeXP }) {
     return (
-        <div className='inputs-XP' >
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', background:'#414145', marginTop:'10px', borderRadius:'10px'}}>
 
-            <input
-                name='empresa'
-                label="Empresa"
-                value={valueEmpresa}
-                variant="standard"
-                placeholder='Empresa'
-                autocomplete="off"
-                onChange={onChangeXP}
-            />
+            <div className='inputs-XP' >
+                <div>
+                    <label>Empresa</label>
 
-            <input
-                name='cargo'
-                label="Cargo"
-                value={valueCargo}
-                variant="standard"
-                placeholder='Cargo'
-                autocomplete="off"
-                onChange={onChangeXP}
-            />
+                    <input
+                        name='empresa'
+                        label="Empresa"
+                        value={valueEmpresa}
+                        variant="standard"
+                        placeholder='Empresa'
+                        autocomplete="off"
+                        onChange={onChangeXP}
+                    />
+                </div>
+                <div>
+                <label>Cargo</label>
 
-            <input
-                name='periodo'
-                label="periodo"
-                value={valuePeriodo}
-                placeholder="Período"
-                autocomplete="off"
-                onChange={onChangeXP}
-            />
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <button onClick={addXP} style={{ border: 'none', background: 'none' }}> <MdAddCircleOutline color='green' size={25} /></button>
-                <button onClick={removeXP} style={{ border: 'none', background: 'none' }}><TiDeleteOutline color='red' size={25} /></button>
+                    <input
+                        name='cargo'
+                        label="Cargo"
+                        value={valueCargo}
+                        variant="standard"
+                        placeholder='Cargo'
+                        autocomplete="off"
+                        onChange={onChangeXP}
+                    />
+                </div>
+                <div>
+
+                <label>Período</label>
+
+                <input
+                    name='periodo'
+                    label="periodo"
+                    value={valuePeriodo}
+                    placeholder="Período"
+                    autocomplete="off"
+                    onChange={onChangeXP}
+                />
+                 </div>
+                <div className='btns-xp'>
+                    <button onClick={addXP} style={{ border: 'none', background: 'none' }}> <BsPlusCircleFill color='#87cefa' size={25} /></button>
+                    <button onClick={removeXP} style={{ border: 'none', background: 'none' }}><TiDelete color='#FF6B00' size={40} /></button>
+                </div>
             </div>
         </div>
     );
