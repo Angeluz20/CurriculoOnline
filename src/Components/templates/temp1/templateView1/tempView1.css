@@ -174,7 +174,7 @@ width: 100%;
     justify-content: flex-start;
 }
 
- .text-objctive{
+ .temp-1-view{
 
     padding-top: 5px;
     display: flex;
@@ -182,7 +182,7 @@ width: 100%;
     justify-content:flex-start;
 
  }
- .text-objctive >span{
+ .temp-1-view >span{
     display: flex;
     text-align: justify;
     font-size: 9px;

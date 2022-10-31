@@ -10,7 +10,7 @@ import { FaUserTie, FaUserGraduate } from 'react-icons/fa'
 import { GiStairsGoal } from 'react-icons/gi'
 import { IoSchoolSharp } from 'react-icons/io5'
 
-export default function TempleteView1({ Formation, nome, contato, endereco, cidade, email, textProfile, XP, textObjective }) {
+export default function TempleteView1({ Formation, nome, contato, endereco, cidade, email, textProfile, XP, textObjective, Cursos }) {
   const { user, signOut } = useContext(AuthContext);
   const componentRef = useRef();
   const [dimensions, setDimensions] = useState({ width: 320, height: 420 });
@@ -69,7 +69,7 @@ export default function TempleteView1({ Formation, nome, contato, endereco, cida
           <label><FaUserTie color='#106561' size={15} /> Perfil<span/></label>
          
         </div>
-        <div className='text-objctive'>
+        <div className='temp-1-view'>
               <span>{textProfile}</span>
             </div>
       </div>
@@ -80,7 +80,7 @@ export default function TempleteView1({ Formation, nome, contato, endereco, cida
 
         </div>
 
-        <div className='text-objctive'>
+        <div className='temp-1-view'>
           <span>{textObjective} </span>
         </div>
       </div>
@@ -91,8 +91,8 @@ export default function TempleteView1({ Formation, nome, contato, endereco, cida
           <span />
         </div>
 
-        <div className='text-objctive'>
-        <div>{Formation}</div>
+        <div className='temp-1-view'>
+        <span>{Formation}</span>
         </div>
       </div>
 
@@ -102,15 +102,14 @@ export default function TempleteView1({ Formation, nome, contato, endereco, cida
           <span />
         </div>
 
-        <div className='text-objctive'>
-          <span></span>
+        <div className='temp-1-view'>
+          <span>{Cursos}</span>
         </div>
       </div>
 
       <div className='container-informacoes-user-view-1'>
         <div className='label-info'>
           <label>Expreriência Profissional</label>
-          <span />
         </div>
 
         <div>
