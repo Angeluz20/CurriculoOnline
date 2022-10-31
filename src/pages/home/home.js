@@ -19,7 +19,7 @@ import Header from '../../Components/header/header';
 import TabsCards from '../../Components/tabsCards/tabCards';
 import Templete1 from '../../Components/templates/temp1/temp1';
 import Templete2 from '../../Components/templates/temp2/temp2';
-import Templete3 from '../../Components/templates/temp3/temp3';
+import TempleteView2 from '../../Components/templates/temp2/templeteView2/tempalateView2';
 import TempleteView1 from '../../Components/templates/temp1/templateView1/tempView1';
 import TitlePages from '../../Components/titlePages/titlePages';
 import Modal from 'react-modal';
@@ -75,6 +75,7 @@ export default function Home() {
     const [loadNameCurri, setLoadNameCurri] = useState(true);
     const [idDocCustomer, setIdDocCustumer] = useState(false);
     const [visibleModal, setVisibleModal] = useState(false);
+    const [visibleModalTemp2, setVisibleModalTemp2] = useState(false);
     const [visibleModalGuide, setVisibleModalGuide] = useState(false);
     const [valorInput, setValorInput] = useState([]);
     const [textProfile, setTextProfile] = useState('');
@@ -281,6 +282,12 @@ export default function Home() {
     }
     function closeModal() {
         setVisibleModal(false)
+    }
+    function openModalTemplate2() {
+        setVisibleModalTemp2(true)
+    }
+    function closeModalTemplate2() {
+        setVisibleModalTemp2(false)
     }
     function opModalGuide() {
         setVisibleModalGuide(true)
@@ -916,7 +923,97 @@ export default function Home() {
 
                                      }
                                     />
-                                    <button className='btn-view-temp1' onClick={() => alert('teste')}>Visualizar modelo</button>
+                                      <Modal
+                                        isOpen={visibleModalTemp2}
+                                        //onRequestClose={fechaModal}
+                                        className='style-modal-temps'
+                                        overlayClassName={'overlay-modal-temps'}
+                                    >
+                                        <div className='container-temp1-view'>
+
+
+                                            <TempleteView2
+                                                 nome={nome}
+                                                 contato={contato}
+                                                 endereco={endereco}
+                                                 cidade={cidade}
+                                                 textProfile={textProfile}
+                                                 textValue={textObective}
+                                                 email={email}
+                                                 estadoCivil={estadoCivil}
+                                                 nascimento={nasc}
+                                                 Cursos={
+                                                     <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
+            
+                                                         {inputCursos.map((item, index) => {
+                                                             return (
+                                                                 <div key={index} className='row-cursos'>
+                                                                     <div>
+                                                                         <span><strong>Curso: </strong> {item.nome}</span>
+                                                                         <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                         <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                                     </div>
+                                                                 </div>
+                                                             )
+                                                         })}
+                                                     </div>
+                                                 }
+                                                 Formation={
+                                                     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
+            
+                                                         {inputFormation.map((item, index) => {
+                                                             return (
+                                                                 <div key={index} className='row-formation'>
+                                                                     <div>
+                                                                         <span><strong>Curso: </strong> {item.nome}</span>
+                                                                         <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                     </div>
+                                                                 </div>
+                                                             )
+                                                         })}
+                                                     </div>
+                                                 }
+                                                 XP={
+            
+                                                     <div style={{ display: 'flex', flexDirection: 'row', }}>
+            
+                                                         {inputField.map((item, index) => {
+                                                             return (
+                                                                 <div key={index} className='row-xp'>
+                                                                     <div>
+                                                                         <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                                         <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                                         <span><strong>Período: </strong> {item.periodo}</span>
+                                                                     </div>
+            
+                                                                 </div>
+                                                             )
+                                                         })}
+                                                     </div>
+
+                                                }
+
+
+                                            />
+
+                                            <div className='container-btn-modal'>
+                                                <button className='btn-close-modal' onClick={closeModalTemplate2}>
+                                                    <AiOutlineClose color='#fff' size={25} />
+                                                </button>
+                                                <button className='styles-btn-options-modal'>
+                                                    <AiOutlineShareAlt color='#fff' size={25} />
+                                                </button>
+                                                <button className='styles-btn-options-modal'>
+                                                    <AiOutlinePrinter color='#fff' size={25} />
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </Modal>
+                                    <button className='btn-view-temp1' onClick={openModalTemplate2}>Visualizar modelo</button>
                                 </div>
 
                          

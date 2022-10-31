@@ -626,8 +626,9 @@ width: 100%;
 .guia > label{
     font-size: 15px;
     font-family: 'Quicksand', sans-serif;
-    color:#1c1c1e;
+    color:#37373a;
     font-weight: 700;
+    margin-top: -10px;
     
 }
 .btn-close-modal-guide{
