@@ -7,8 +7,11 @@ import { toast } from 'react-toastify';
 import { useHistory, useParams } from 'react-router-dom';
 import { IconButton, TextField, Button, makeStyles, Box } from '@material-ui/core';
 import { MdAddCircleOutline } from 'react-icons/md'
-import { TiDeleteOutline } from 'react-icons/ti'
+import { BsPlusCircleFill } from 'react-icons/bs'
+
+import { TiDelete } from 'react-icons/ti'
 import { AiOutlineShareAlt, AiOutlinePrinter, AiOutlineClose } from 'react-icons/ai'
+
 import { FaAddressBook } from 'react-icons/fa'
 import Carousel from 'nuka-carousel/lib/carousel';
 import firebase from '../services/firebaseConnection';
@@ -24,7 +27,11 @@ import Tab1 from '../../Components/tabsCards/tab1/tabCard1';
 import TabExperiencia from '../../Components/tabsCards/tabExperiencia/tabXp';
 import TabProfile from '../../Components/tabsCards/tabProfile/tabProfile';
 import TabObjective from '../../Components/tabsCards/tabObjective/tabObjective';
-import differenceInBusinessDays from 'date-fns/fp/differenceInBusinessDays/index';
+import Manual from '../../img/manual.svg'
+import passo1 from '../../img/passo1.jpg'
+import passo2 from '../../img/passo2.jpg'
+import passo3 from '../../img/passo3.jpg'
+import passo4 from '../../img/passo4.jpg'
 const useStyles = makeStyles((theme) => ({
     root: {
         "& .MuiTextField-root": {
@@ -68,6 +75,7 @@ export default function Home() {
     const [loadNameCurri, setLoadNameCurri] = useState(true);
     const [idDocCustomer, setIdDocCustumer] = useState(false);
     const [visibleModal, setVisibleModal] = useState(false);
+    const [visibleModalGuide, setVisibleModalGuide] = useState(false);
     const [valorInput, setValorInput] = useState([]);
     const [textProfile, setTextProfile] = useState('');
     const [valorInputFormation, setValorInputFormation] = useState([]);
@@ -76,8 +84,12 @@ export default function Home() {
         empresa: '', cargo: '', periodo: ''
     },]);
     const [inputFormation, setInputFormation] = useState([{
-        nome: '', status: '', instituicao: '', cargaHoraria: ''
+        nome: '', instituicao: ''
     },]);
+    const [inputCursos, setInputCursos] = useState([{
+        nome: '', instituicao: '', cargaHoraria: ''
+    },]);
+
 
 
 
@@ -85,8 +97,8 @@ export default function Home() {
 
 
     useEffect(() => {
-          
-      
+
+
         async function loadNameCurri() {
             await firebase.firestore().collection('users')
                 .doc(user.uid).collection('registerNameCurriculo')
@@ -119,7 +131,7 @@ export default function Home() {
                 })
         }
         loadNameCurri()
-        
+
     }, [])
 
     async function loadId(lista) {
@@ -138,6 +150,7 @@ export default function Home() {
                 setTextProfile(snapshot.data().textProfile)
                 setInputField(snapshot.data().inputField)
                 setInputFormation(snapshot.data().inputFormation)
+                setInputCursos(snapshot.data().inputCursos)
                 setEmail(snapshot.data().email)
                 let index = lista.findIndex(item => item.id === snapshot.data().docId)
                 setSelectedNameCurri(index)
@@ -167,7 +180,8 @@ export default function Home() {
                     inputField: inputField,
                     email: email,
                     inputFormation: inputFormation,
-                    textProfile: textProfile
+                    textProfile: textProfile,
+                    inputCursos: inputCursos
                 })
                 .then(() => {
                     toast.success('Informações atualizadas com sucesso!')
@@ -202,7 +216,8 @@ export default function Home() {
                     inputField: inputField,
                     email: email,
                     inputFormation: inputFormation,
-                    textProfile: textProfile
+                    textProfile: textProfile,
+                    inputCursos: inputCursos
                 })
                 .then(() => {
                     // setNome('');
@@ -267,6 +282,12 @@ export default function Home() {
     function closeModal() {
         setVisibleModal(false)
     }
+    function opModalGuide() {
+        setVisibleModalGuide(true)
+    }
+    function closeModalGuide() {
+        setVisibleModalGuide(false)
+    }
     async function updateImg(e) {
         e.preventDefault();
         const file = e.target[0]?.files[0];
@@ -315,7 +336,7 @@ export default function Home() {
     }
     function addFormation(e) {
         e.preventDefault();
-        setInputFormation([...inputFormation, { nome: '', status: '', instituicao: '', cargaHoraria: '' }])
+        setInputFormation([...inputFormation, { nome: '', instituicao: '' }])
     }
     function saveFormation(e) {
         e.preventDefault();
@@ -328,10 +349,28 @@ export default function Home() {
         values.splice(index, 1);
         setInputFormation(values)
     }
+    function handleChangeCursos(index, e) {
+        e.preventDefault();
+        const values = [...inputCursos];
+        values[index][e.target.name] = e.target.value;
+        setInputCursos(values)
+        console.log(index, e.target.name)
+    }
+    function addCursos(e) {
+        e.preventDefault();
+        setInputCursos([...inputCursos, { nome: '', instituicao: '', cargaHoraria: '' }])
+    }
+
+    function removeCursos(index) {
+
+        const values = [...inputCursos];
+        values.splice(index, 1);
+        setInputCursos(values)
+    }
     return (
         <div className='container-principal'>
 
-            {/* <TitlePages title={'Home'}/> */}
+
             <div className='container-principal'>
                 <Header />
                 <div className='row-items'>
@@ -350,9 +389,58 @@ export default function Home() {
 
                                     </h5>
                                 </div>
-                                <div className='guia' onClick={() => alert('teste')}>
-                                    <div className='btn-guide'><FaAddressBook color='#28282a' size={70} /></div>
-                                    <label>Guia</label>
+                                <div className='guia' >
+
+                                    <div className='btn-guide'> <img src={Manual} onClick={opModalGuide} alt='animated' className='manual' /></div>
+                                    <label>Clique aqui  pra conhecer a plataforma</label>
+                                    <Modal
+                                        className='style-modal-guide'
+                                        isOpen={visibleModalGuide}
+                                        overlayClassName='modal-guide-overlay'
+                                    >
+                                        <div className='container-carousel-guide'>
+                                            <Carousel
+                                                slidesToShow={1}
+                                                style={{ position: 'relative', }}
+                                                cellAlign="center"
+                                                defaultControlsConfig={{
+
+                                                    nextButtonText: '>',
+                                                    prevButtonText: '<',
+                                                    prevButtonStyle: {
+                                                        background: '#d27af5',
+                                                        borderRadius: 20,
+                                                        color: '#fff',
+                                                        cursor: 'pointer',
+                                                        height: 250
+                                                    },
+
+                                                    nextButtonStyle: {
+                                                        background: '#d27af5',
+                                                        borderRadius: 20,
+                                                        color: '#fff',
+                                                        cursor: 'pointer',
+                                                        height: 250
+                                                    },
+                                                    pagingDotsStyle: {
+
+                                                        margin: 5,
+                                                        fill: '#fff',
+                                                        position: 'static',
+
+                                                    }
+                                                }}
+
+                                            >
+                                                <div><img src={passo1} style={{ width: 410, height: 374, marginLeft: 20 }} /></div>
+                                                <div><img src={passo2} style={{ width: 410, height: 374, marginLeft: 20 }} /></div>
+                                                <div><img src={passo3} style={{ width: 410, height: 374, marginLeft: 20 }} /></div>
+                                                <div><img src={passo4} style={{ width: 410, height: 374, marginLeft: 20 }} /></div>
+                                            </Carousel>
+                                        </div>
+
+                                        <button onClick={closeModalGuide} className='btn-close-modal-guide'> <TiDelete color='#fff' size={35} /></button>
+                                    </Modal>
                                 </div>
 
                                 <form onSubmit={handleRegisterCurri} >
@@ -394,12 +482,12 @@ export default function Home() {
                         <form onSubmit={handleSave} autocomplete="off">
                             <div className='box-form'>
                                 <h5>
-                                <span className='box-line-form'></span>
+                                    <span className='box-line-form'></span>
                                     Formulário
-                                <span className='box-line-form'></span>
+                                    <span className='box-line-form'></span>
                                 </h5>
-                                
-                                </div>
+
+                            </div>
                             <section className='form'>
                                 <TabsCards
                                     cabecalho={
@@ -474,57 +562,93 @@ export default function Home() {
                                         </div>
                                     }
                                     formation={
-                                        <div className='container-cursos'>
-                                            <label>Formação</label>
-                                            {inputFormation.map((item, index) => {
-                                                return (
-                                                    <div className='cursos' key={index}>
-                                                        <div className='input-formation'>
-                                                            <input
-                                                                name='nome'
-                                                                label="Nome"
-                                                                value={item.nome}
-                                                                variant="standard"
-                                                                placeholder='Nome do curso'
-                                                                autocomplete="off"
-                                                                onChange={(e) => handleChangeFormation(index, e)}
-                                                            />
+                                        <div style={{ display: 'flex', alingItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
+                                            <div className='container-formation'>
+                                                <label>Formação</label>
+                                                {inputFormation.map((item, index) => {
+                                                    return (
+                                                        <div className='formation' key={index}>
+                                                            <div className='input-formation'>
+                                                                <label>Nome do Curso</label>
+                                                                <input
+                                                                    name='nome'
+                                                                    label="Nome"
+                                                                    value={item.nome}
+                                                                    variant="standard"
+                                                                    placeholder='Nome do curso'
+                                                                    autocomplete="off"
+                                                                    onChange={(e) => handleChangeFormation(index, e)}
+                                                                />
+                                                                <label>Instituição</label>
+                                                                <input
+                                                                    name='instituicao'
+                                                                    label="instituicao"
+                                                                    value={item.instituicao}
+                                                                    placeholder="Instituicao"
+                                                                    autocomplete="off"
+                                                                    onChange={(e) => handleChangeFormation(index, e)}
+                                                                />
 
-                                                            <input
-                                                                name='status'
-                                                                label="status"
-                                                                value={item.status}
-                                                                variant="standard"
-                                                                placeholder='Status do curso'
-                                                                autocomplete="off"
-                                                                onChange={(e) => handleChangeFormation(index, e)}
-                                                            />
-
-                                                            <input
-                                                                name='instituicao'
-                                                                label="instituicao"
-                                                                value={item.instituicao}
-                                                                placeholder="Instituicao"
-                                                                autocomplete="off"
-                                                                onChange={(e) => handleChangeFormation(index, e)}
-                                                            />
-                                                            <input
-                                                                name='cargaHoraria'
-                                                                label="cargaHoraria"
-                                                                value={item.cargaHoraria}
-                                                                placeholder="Carga Horária"
-                                                                autocomplete="off"
-                                                                onChange={(e) => handleChangeFormation(index, e)}
-                                                            />
-                                                            <button style={{ padding: 10, borderRadius: 30, border: 'none', height: 40, marginTop: 10 }} onClick={removeFormation}>-</button>
-                                                            <button style={{ padding: 10, borderRadius: 30, border: 'none', height: 40, marginTop: 10, marginLeft: 10 }} onClick={addFormation}>+</button>
+                                                                <div>
+                                                                    <button style={{ border: 'none', background: 'none' }} onClick={addFormation} > <BsPlusCircleFill color='#87cefa' size={25} /></button>
+                                                                    <button style={{ border: 'none', background: 'none' }} onClick={removeFormation}><TiDelete color='#FF6B00' size={40} /></button>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )
-                                            })}
+                                                    )
+                                                })}
 
+                                            </div>
                                         </div>
+                                    }
+                                    cursos={
+                                        <div style={{ display: 'flex', alingItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
+                                            <div className='container-cursos'>
+                                                <label>Cursos</label>
+                                                {inputCursos.map((item, index) => {
+                                                    return (
+                                                        <div className='cursos' key={index}>
+                                                            <div className='input-cursos'>
+                                                                <label>Nome do Curso</label>
+                                                                <input
+                                                                    name='nome'
+                                                                    label="Nome"
+                                                                    value={item.nome}
+                                                                    variant="standard"
+                                                                    placeholder='Nome do curso'
+                                                                    autocomplete="off"
+                                                                    onChange={(e) => handleChangeCursos(index, e)}
+                                                                />
+                                                                <label>Instituição</label>
+                                                                <input
+                                                                    name='instituicao'
+                                                                    label="instituicao"
+                                                                    value={item.instituicao}
+                                                                    placeholder="Instituicao"
+                                                                    autocomplete="off"
+                                                                    onChange={(e) => handleChangeCursos(index, e)}
+                                                                />
+                                                                <label>Carga Horária</label>
+                                                                <input
+                                                                    name='cargaHoraria'
+                                                                    label="cargaHoraria"
+                                                                    value={item.cargaHoraria}
+                                                                    placeholder="Carga Horária"
+                                                                    autocomplete="off"
+                                                                    onChange={(e) => handleChangeCursos(index, e)}
+                                                                />
 
+                                                                <div>
+                                                                    <button style={{ border: 'none', background: 'none' }} onClick={addCursos} > <BsPlusCircleFill color='#87cefa' size={25} /></button>
+                                                                    <button style={{ border: 'none', background: 'none' }} onClick={removeCursos}><TiDelete color='#FF6B00' size={40} /></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+
+                                            </div>
+                                        </div>
                                     }
                                 />
 
@@ -540,9 +664,9 @@ export default function Home() {
                         <div className='container-carousel-teste'>
                             <div className='box-templates'>
                                 <h5>
-                                     <span className='box-line-templates'></span>
-                                        Templetes
-                                     <span className='box-line-templates'></span>
+                                    <span className='box-line-templates'></span>
+                                    Templates
+                                    <span className='box-line-templates'></span>
                                 </h5>
                             </div>
                             <Carousel slidesToShow={1}
@@ -588,19 +712,31 @@ export default function Home() {
                                         textProfile={textProfile}
                                         textValue={textObective}
                                         email={email}
+                                        Cursos={
+                                            <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
+
+                                                {inputCursos.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className='row-cursos'>
+                                                            <div>
+                                                                <span><strong>Curso: </strong> {item.nome}</span>
+                                                                <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                                <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        }
                                         Formation={
-                                            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
 
                                                 {inputFormation.map((item, index) => {
                                                     return (
                                                         <div key={index} className='row-formation'>
                                                             <div>
                                                                 <span><strong>Curso: </strong> {item.nome}</span>
-                                                                <span><strong>Status: </strong> {item.status}</span>
                                                                 <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                                <span><strong>Carga Horária: </strong> {item.cargaHoraria}</span>
-
-
                                                             </div>
                                                         </div>
                                                     )
@@ -627,6 +763,7 @@ export default function Home() {
 
                                         }
                                     />
+                                    
                                     <Modal
                                         isOpen={visibleModal}
                                         //onRequestClose={fechaModal}
@@ -643,26 +780,40 @@ export default function Home() {
                                                 cidade={cidade}
                                                 textProfile={textProfile}
                                                 textObjective={textObective}
-                                                Formation={
-                                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                                email={email}
+                                                Cursos={
+                                                    <div style={{ display: 'flex', flexDirection: 'row', width: 150, height: '40px'}}>
 
-                                                    {inputFormation.map((item, index) => {
+                                                    {inputCursos.map((item, index) => {
                                                         return (
-                                                            <div key={index} className='row-formation'>
+                                                            <div key={index} className='row-cursos-view'>
                                                                 <div>
                                                                     <span><strong>Curso: </strong> {item.nome}</span>
-                                                                    <span><strong>Status: </strong> {item.status}</span>
                                                                     <span><strong>Instituição: </strong> {item.instituicao}</span>
-                                                                    <span><strong>Carga Horária: </strong> {item.cargaHoraria}</span>
-    
-    
+                                                                    <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
                                                                 </div>
                                                             </div>
                                                         )
                                                     })}
                                                 </div>
                                                 }
-                                                email={email}
+                                                Formation={
+                                                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px'  }}>
+
+                                                        {inputFormation.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className='row-formation-view'>
+                                                                    <div>
+                                                                        <span><strong>Curso: </strong> {item.nome}</span>
+                                                                        <span><strong>Instituição: </strong> {item.instituicao}</span>
+
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                }
+
                                                 XP={
                                                     <div style={{ display: 'flex', flexDirection: 'row', }}>
                                                         {inputField.map((item, index) => {
@@ -704,11 +855,71 @@ export default function Home() {
                                     <button className='btn-view-temp1' onClick={opModal}>Visualizar modelo</button>
                                 </div>
                                 <div>
-                                    <Templete2 />
+                                    <Templete2
+                                     nome={nome}
+                                     contato={contato}
+                                     endereco={endereco}
+                                     cidade={cidade}
+                                     textProfile={textProfile}
+                                     textValue={textObective}
+                                     email={email}
+                                     estadoCivil={estadoCivil}
+                                     nascimento={nasc}
+                                     Cursos={
+                                         <div style={{ display: 'flex', flexDirection: 'row', width: 100, height: '40px'}}>
+
+                                             {inputCursos.map((item, index) => {
+                                                 return (
+                                                     <div key={index} className='row-cursos'>
+                                                         <div>
+                                                             <span><strong>Curso: </strong> {item.nome}</span>
+                                                             <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                             <span><strong>Carga horária: </strong> {item.cargaHoraria}</span>
+                                                         </div>
+                                                     </div>
+                                                 )
+                                             })}
+                                         </div>
+                                     }
+                                     Formation={
+                                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50px' }}>
+
+                                             {inputFormation.map((item, index) => {
+                                                 return (
+                                                     <div key={index} className='row-formation'>
+                                                         <div>
+                                                             <span><strong>Curso: </strong> {item.nome}</span>
+                                                             <span><strong>Instituição: </strong> {item.instituicao}</span>
+                                                         </div>
+                                                     </div>
+                                                 )
+                                             })}
+                                         </div>
+                                     }
+                                     XP={
+
+                                         <div style={{ display: 'flex', flexDirection: 'row', }}>
+
+                                             {inputField.map((item, index) => {
+                                                 return (
+                                                     <div key={index} className='row-xp'>
+                                                         <div>
+                                                             <span><strong>Empresa: </strong> {item.empresa}</span>
+                                                             <span><strong>Cargo: </strong> {item.cargo}</span>
+                                                             <span><strong>Período: </strong> {item.periodo}</span>
+                                                         </div>
+
+                                                     </div>
+                                                 )
+                                             })}
+                                         </div>
+
+                                     }
+                                    />
                                     <button className='btn-view-temp1' onClick={() => alert('teste')}>Visualizar modelo</button>
                                 </div>
 
-                                <Templete3 />
+                         
 
                             </Carousel>
 
