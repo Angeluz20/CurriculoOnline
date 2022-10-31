@@ -67,7 +67,7 @@ export default function Home() {
     const [nasc, setNasc] = useState('');
     const [endereco, setEndereco] = useState('');
     const [estadoCivil, setEstadoCivil] = useState('');
-    const [genero, setGenero] = useState('');
+    const [genero, setGenero] = useState('Masculino');
     const [cidade, setCidade] = useState('');
     const [nomeCurri, setNomeCurri] = useState('');
     const [textObective, setTextObjective] = useState('');
@@ -523,6 +523,9 @@ export default function Home() {
 
                                                 email={email}
                                                 emailOnChange={(e) => setEmail(e.target.value)}
+                                                checkedFeminino={genero === 'Feminino'}
+                                                checkedMasculino={genero === 'Masculino'}
+                                                checkedlgb={genero === 'LGBTQIA+'}
                                             />
                                         </>
 

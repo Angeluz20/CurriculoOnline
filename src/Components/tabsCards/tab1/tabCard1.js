@@ -15,7 +15,11 @@ export default function Tab1({
     email, 
     emailOnChange,
     birth,
-    BirthOnChange}) {
+    BirthOnChange,
+    checkedlgb,
+    checkedFeminino,
+    checkedMasculino
+}) {
     return (
 
         <div className='container-tab-1'>
@@ -73,6 +77,7 @@ export default function Tab1({
                     name='radio'
                     value='Masculino'
                     onChange={genreOnchange}
+                    checked={checkedMasculino}
                 />
                 <span>Masculino</span>
                 <input
@@ -80,6 +85,7 @@ export default function Tab1({
                     name='radio'
                     value='Feminino'
                     onChange={genreOnchange}
+                    checked={checkedFeminino}
                 />
                 <span>Feminino</span>
                 <input
@@ -87,6 +93,7 @@ export default function Tab1({
                     name='radio'
                     value='LGBTQIA+'
                     onChange={genreOnchange}
+                    checked={checkedlgb}
                 />
                 <span>LGBTQIA+</span>
 
