@@ -8,6 +8,7 @@
 }
 html, body, #root{
   height: 100vh; 
+  background-color: #1c1c1e;
 }
 
 ::-webkit-scrollbar{
