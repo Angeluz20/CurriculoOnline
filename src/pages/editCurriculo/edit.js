@@ -6,6 +6,8 @@ import { FaRegEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth'
 import { HiOutlineDocumentSearch } from 'react-icons/hi'
+import { TiDelete } from 'react-icons/ti'
+
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import Header from '../../Components/header/header';
@@ -67,6 +69,7 @@ export default function EditCurriculo() {
           estadoCivil: doc.data().estadoCivil,
           genero: doc.data().genero,
           nasc: doc.data().nasc,
+          email: doc.data().email,
           nomeCurri: doc.data().nomeCurri,
           docId: doc.data().docId,
           created: doc.data().created,
@@ -94,14 +97,14 @@ export default function EditCurriculo() {
       .doc(user.uid).collection('curriculosName').doc(id)
       .delete()
       .then(() => {
-        
+
         toast.success('Currículo excluido com sucesso!')
       })
       .catch((err) => {
         toast.error('Ops, algo deu errado', err)
       })
 
-    
+
   }
   function abreModal(item) {
     //console.log(item)
@@ -128,90 +131,63 @@ export default function EditCurriculo() {
 
           </div>
         </section>) : (
-        
-        <section className='container-edit-main'>
 
-          <label id="title-edit">Meus currículos <hr /></label>
-         
-         
+          <section className='container-edit-main'>
+
+            <label id="title-edit">Meus currículos <hr /></label>
+
+
             <div className='container-edit' >
-           {emptyCurri.map((item, index) => {
-              return (
-             
-                <div className='div-card' key={index}>
-                     <div className='testeCard'>
-                  <div className='container-foto-card'>
+              {emptyCurri.map((item, index) => {
+                return (
 
-                    <img src={user.avatarUrl === null ? avatar
-                      : user.avatarUrl} className='foto-curri' />
+                  <div className='div-card' key={index}>
+                    <div className='testeCard'>
+                      <div className='container-foto-card'>
 
+                        <img src={user.avatarUrl === null ? avatar
+                          : user.avatarUrl} className='foto-curri' />
+
+                      </div>
+
+                      <label className='label-name-curri-info'>
+                        <strong>Nome:</strong>
+                        <span>
+                          {item.nome}
+                        </span>
+                        <strong>Informações do currículo:</strong>
+                        <span>
+                          <label>Arquivo:</label> {item.nomeCurri}
+
+                        </span>
+                        <span>
+                          <label>Data:</label> {item.createdFormat}
+                        </span>
+                      </label>
+                      <div className='container-btns'>
+                        <Link id='link-style-btns' onClick={() => abreModal(item)}>
+                          <HiOutlineDocumentSearch color='#fff' size={25} />
+                        </Link>
+
+                        <Link id='link-style-btns' to={`/home/${item.id}`}>
+                          <FaRegEdit color='#fff' size={25} />
+                        </Link>
+
+                        <Link id='link-style-btns' onClick={() => removeCurri(item.id)}>
+                          <BiTrash color='#fff' size={25} />
+                        </Link>
+                      </div>
+
+                    </div>
                   </div>
 
-                  <label className='label-name-curri-info'>
-                    <strong>Nome:</strong>
-                    <span>
-                      {item.nome}
-                    </span>
-                    <strong>Informações do currículo:</strong>
-                    <span>
-                      <label>Arquivo:</label> {item.nomeCurri}
-                      <label>Data:</label> {item.createdFormat}
-                    </span>
-                  </label>
-                  <div className='container-btns'>
-                    <Link id='link-style-btns' onClick={() => abreModal(item)}>
-                      <HiOutlineDocumentSearch color='#fff' size={25} />
-                    </Link>
+                )
+              })}
+            </div>
 
-                    <Link id='link-style-btns' to={`/home/${item.id}`}>
-                      <FaRegEdit color='#fff' size={25} />
-                    </Link>
 
-                    <Link id='link-style-btns' onClick={() => removeCurri(item.id)}>
-                      <BiTrash color='#fff' size={25} />
-                    </Link>
-                  </div>
-                  
-                </div>
-                </div>
 
-              )
-            })}
-           </div>
-          {/* 
-          {emptyCurri.map((item, index) => {
-            return (
-              <div className='card-curriculo-save' key={index}>
-
-                <span>
-                  <div>
-                    <button id='link-style' onClick={() => abreModal(item)} style={{ background: '#82ffa1' }}>
-                      <ImFileText2 color='#000' size={25} />
-                    </button>
-                    <label className='label-name-curri'><strong>Nome:</strong> {item.nome}</label>
-                  </div>
-
-                </span>
-                <span>
-                  <Link to={`/home/${item.id}`} id='link-style'>
-                    <ImPencil color='#EEAD2D' size={25} />
-                  </Link>
-
-                  <Link id='link-style' onClick={() => removeCurri(item.id)}>
-                    <BiTrash color='#D75413' size={25} />
-                  </Link>
-
-                </span>
-              </div>
-
-            )
-          })} */}
-        
-
-       
-        
-    
-        </section>)}
+          </section>)}
 
 
       </div>
@@ -221,17 +197,28 @@ export default function EditCurriculo() {
         className='style-modal'
         overlayClassName={'overlay-modal'}
       >
-        <h1>Suas Informações</h1>
-        <hr></hr>
-        <p><strong>Nome:</strong> {details.nome}</p>
-        <p><strong>Cidade:</strong> {details.cidade}</p>
-        <p><strong>Celular:</strong> {details.contato}</p>
-        <p><strong>Estado Civil:</strong> {details.estadoCivil}</p>
-        <p><strong>Sexo:</strong> {details.genero}</p>
-        <p><strong>nome do Curriculo:</strong> {details.nomeCurri}</p>
-       
-      
-        <button onClick={fechaModal}>voltar</button>
+        <div className='visible-info'>
+
+          <div className='title-dados-pessoais'>
+            <h3>Dados pessoais</h3>
+          </div>
+          <hr></hr>
+          <div className='informacoes-container'>
+
+            <p><strong>Nome:</strong> {details.nome}</p>
+            <p><strong>Cidade:</strong> {details.cidade}</p>
+            <p><strong>Celular:</strong> {details.contato}</p>
+            <p><strong>Estado Civil:</strong> {details.estadoCivil}</p>
+            <p><strong>Sexo:</strong> {details.genero}</p>
+            <p><strong>E-mail:</strong> {details.email}</p>
+            <p><strong>Endereço:</strong> {details.endereco}</p>
+            <p><strong>Nome do Curriculo:</strong> {details.nomeCurri}</p>
+          </div>
+
+          <button className='close-modal-edit' onClick={fechaModal}><TiDelete color='#fff' size={35} /></button>
+        </div>
+
+
 
       </Modal>
       {/* <footer>
