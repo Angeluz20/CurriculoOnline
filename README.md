@@ -32,7 +32,7 @@ o site foi estruturado em uma linha de raciocino linear, onde cada elemento fica
     <img alt="home" title="home" src="./src/img/imgs-Readme/home.jpg" width="650">
   </a>
     <p align="center">
-    <img alt="home" title="home" src="./src/img/imgs-Readme/mobile.png" width="650">
+    <img alt="home" title="home" src="./src/img/imgs-Readme/mobileTeste.png" width="650">
   </a>
 </p>
 
