@@ -1,0 +1,13 @@
+.profile{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.txtarea{
+    margin-top: 20px;
+    resize:none;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+}

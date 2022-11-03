@@ -43,7 +43,9 @@ function AuthProvider({ children }) {
                 setUser(data);
                 storageUser(data);
                 setLoadingAuth(false)
-                toast.success('Bem-vindo de volta, ' + data.nome)
+                toast.success('Bem-vindo de volta, ' + data.nome, {
+                    position: toast.POSITION.TOP_CENTER
+                  })
             })
             .catch((error) => {
                 console.log(error);

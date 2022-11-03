@@ -71,7 +71,7 @@ export default function Signin() {
                             <label for='usuario'>E-mail</label>
                             <div className='container-input'>
                                 <AiOutlineUser color='#25b797' size={20} />
-                                <input type='text' name='usuario' placeholder='exemplo@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                                <input type='text' name='usuario' placeholder='exemplo@gmail.com'autocomplete="off" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                             </div>
 
                         </div>

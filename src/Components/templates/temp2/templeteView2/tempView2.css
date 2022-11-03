@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+
+
+
+.container-form-temp-view-2{
+
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+
+.template-view-2{
+    margin-left: 40px;
+    width: 450px;
+    height: 670px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0px 10px 22px 2px #0a0a0a53;
+    box-sizing: border-box;
+    background-color: #f3f3f3;;  
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    background-color: #fff;
+}
+
+.header-template-view-2{
+    padding: 6px;
+    width: 100%;
+    height: 110px;
+    background-color:#9639e2d1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    position: relative;
+    
+}
+.informacoes-row-view-2{
+    width: 100%;
+    height: 60px;
+    background-color:rgba(207, 163, 245, 0.411);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.nome-temp-2{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    margin-bottom: -260px;
+
+}
+.nome-temp-view-2 >h5{
+   color: rgb(255, 255, 255);
+   font-weight: 700;
+   font-family: 'Saira', sans-serif;
+   font-size: 13px;
+   position: absolute;
+   display: flex;
+}
+.design-temp-view-2{
+    width: 90px;
+    height: 60px;
+    background-color: #660f8c;
+    position: absolute;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 20px;
+    
+}
+
+.photo-template-view-2{
+    width: 55px;
+    height: 50px;
+    background-color: #eeeeee54;
+    border-radius:60px;
+    position: absolute;
+    box-shadow: 0px 10px 22px 2px #4e076fa4;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-user-header-view-2{
+  width: 100%;
+  height: 20px;
+  background-color:#9639e2d1;
+}
+.info-user-temp-view-2{
+    margin-top: 3px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+.info-user-temp-view-2 > div{  
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+}
+.info-user-temp-view-2 > div> span{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 8.2px;
+    width: 180px;
+}
+
+/* ///////////////////////////// div obetivo/////////////////////////////// */
+
+.container-informacoes-user-view-2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+.label-info-mini-temp-view-2{
+    width: 100%;
+    height: 20px;
+    display: flex;
+     margin-right: 30px;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.label-info-mini-temp-view-2 > label{
+   
+   font-size: 11px;
+   color: rgb(76, 10, 123);
+   margin-left:30px;
+   font-family: 'Saira', sans-serif;
+   font-weight: 600;
+   margin-top: 30px;
+   display: flex;
+   justify-content: flex-start;
+  
+   
+}
+
+.text-objctive-temp-view-2{
+
+    padding-top: 5px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content:flex-start;
+
+
+ }
+ .text-objctive-temp-view-2>span{
+    display: flex;
+    text-align: justify;
+    font-size: 9px;
+    margin-left: 32px;
+    margin-right: 25px;
+    margin-bottom: -43px;
+ }
+@media only screen and (max-width:1240px){
+    .container-form-temp-view-2{
+    height: 120%;  
+}
+    .nome-temp-2 >h5{
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-family: 'Saira', sans-serif;
+        font-size: 10px;
+        position: absolute;
+        display: flex;
+        margin-bottom: -2.5px;
+     }
+    .data-user-header-view-2{
+       
+        width: 100%;
+        height: 60px;
+        background-color:#9639e2d1;
+      }
+    .informacoes-row-view-2{
+        width: 100%;
+        height: 50px;
+        background-color:rgba(207, 163, 245, 0.411);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .label-info-mini-temp-view-2{
+        width: 100%;
+        height: 20px;
+        display: flex;
+        margin-right: 30px;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .label-info-mini-temp-view-2> label{
+        font-size: 9px;
+        color: rgb(76, 10, 123);
+        margin-left:30px;
+        justify-content: flex-start;
+         margin-top: 30px;     
+    }
+    
+    .text-objctive-temp-view-2{
+    
+        padding-top: 5px;
+        display: flex;
+        box-sizing: border-box;
+        justify-content:flex-start;
+    
+    
+     }
+     .text-objctive-temp-view-2>span{
+        display: flex;
+        text-align: justify;
+        font-size: 4px;
+        margin-left: 32px;
+        margin-right: 25px;
+        margin-bottom: -43px;}
+    .template-view-2{
+        margin-left: 30.5px;
+        width: 270px;
+        height: 400px;
+
+    }
+    .design-temp-view-2{
+        width: 90px;
+        height: 65px;
+        background-color: #660f8c;
+        position: absolute;
+        border-top-left-radius: 60px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 20px;
+    }
+    .photo-template-view-2{
+        width: 55px;
+        height: 55px;
+        margin-bottom: -10px;
+    }
+    
+    .container-form-temp-view--2{
+        width: 100%;
+        height: 100vh;
+    }
+    .header-template-2{ 
+        width: 100%;
+        height: 180px;    
+      
+    }
+    .text-objctive-temp-view-2>span{
+        display: flex;
+        text-align: justify;
+        font-size: 5px;
+
+     }
+     .text-objctive-temp-view-2>div{
+        display: flex;
+        text-align: justify;
+        font-size: 6px;
+      
+     }
+     .info-user-temp-view-2 > span{
+        font-size: 5.2px;
+       }
+}

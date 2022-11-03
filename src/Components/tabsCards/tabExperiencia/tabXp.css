@@ -1,0 +1,37 @@
+.inputs-XP{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+  
+  }
+  .inputs-XP > div{
+    
+    
+    outline: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    
+  }
+   .inputs-XP > div>input{
+   
+    width: 90%;
+    height: 25px;
+    background-color:#fff;
+    outline: none;
+    padding: 8px;
+    border: none;
+    border-radius: 15px;
+  }
+  .btns-xp{
+ 
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+ 
+  }

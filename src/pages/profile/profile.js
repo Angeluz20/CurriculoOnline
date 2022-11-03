@@ -6,6 +6,7 @@ import { FiUpload } from 'react-icons/fi'
 import { AuthContext } from '../../contexts/auth';
 import firebase from '../../pages/services/firebaseConnection';
 import { toast } from 'react-toastify';
+import TitlePages from '../../Components/titlePages/titlePages';
 
 export default function Profile() {
 
@@ -21,25 +22,25 @@ export default function Profile() {
   function handleFile(e) {
     //console.log((e.target.files[0]))
     const image = e.target.files[0];
-    if(image.type === 'image/jpeg' || image.type === 'image/png'){
+    if (image.type === 'image/jpeg' || image.type === 'image/png') {
       setImgAvatar(image)
       setAvatarUrl(URL.createObjectURL(e.target.files[0]))
-    }else{
-        alert('Envie uma imagem do tipo PNG ou JPEG');
-        setImgAvatar(null);
-        return null;
+    } else {
+      toast.error('Envie uma imagem do tipo PNG ou JPEG');
+      setImgAvatar(null);
+      return null;
     }
 
   }
   async function handleUpload() {
     const currentUid = user.uid;
     const uploadoTask = await firebase.storage()
-    .ref(`images/${currentUid}/${imgAvatar.name}`)
-    .put(imgAvatar)
-    .then( async () => {
-      alert('Foto Enviada com sucesso')
+      .ref(`images/${currentUid}/${imgAvatar.name}`)
+      .put(imgAvatar)
+      .then(async () => {
+        toast.success('Foto Enviada com sucesso')
 
-              await firebase.storage().ref(`images/${currentUid}`)
+        await firebase.storage().ref(`images/${currentUid}`)
           .child(imgAvatar.name).getDownloadURL()
           .then(async (url) => {
             let urlFoto = url;
@@ -51,7 +52,7 @@ export default function Profile() {
                 nome: nome
               })
               .then(() => {
-                let data ={
+                let data = {
                   ...user,
                   avatarUrl: urlFoto,
                   nome: nome
@@ -60,12 +61,12 @@ export default function Profile() {
                 storageUser(data)
               })
           })
-    })
-    .catch((error) =>{
-      alert(error)
-      console.log(error)
-    })
-   
+      })
+      .catch((error) => {
+        alert(error)
+        console.log(error)
+      })
+
   }
 
 
@@ -90,27 +91,45 @@ export default function Profile() {
     }
 
   }
-  
+
   return (
     <div >
       <Header />
+      {/* <TitlePages title={'Perfil'}/> */}
+
       <div className='container-main-profile'>
-    
+        <div className='box-container-profile'>
+
+          <h5>  <span className='box-line-profile'></span>
+            Perfil
+            <span className='box-line-profile'></span>
+
+          </h5>
+        </div>
         <div className='container-profile'>
-          <form className='form-avatar' onSubmit={HandleSave}>
-            <label className='label-avatar'>
-              <span>
-                <FiUpload color='#fff' size={45} />
+          <div className='style-card-avatar'>
+            <form className='form-avatar' onSubmit={HandleSave}>
 
-              </span>
-            
-              {avatarUrl === null ? <img src={avatar} width='250' height='250' alt='foto padrao' />
-                : <img src={avatarUrl} alt='foto perfil' id='photo-profile' />}
-             <input type='file' accept="image/*" onChange={handleFile} id='input-photo'/>
-            </label>
 
-          </form >
+
+              <label className='label-avatar'>
+                <span>
+                  <FiUpload color='#fff' size={45} />
+
+                </span>
+
+                {avatarUrl === null ? <img src={avatar} width='250' height='250' alt='foto padrao' />
+                  : <img src={avatarUrl} alt='foto perfil' id='photo-profile' />}
+                <input type='file' accept="image/*" onChange={handleFile} id='input-photo' />
+              </label>
+
+            </form >
+          </div>
           <form className='form-avatar' onSubmit={HandleSave}>
+            {/* <div className='title-profile'>
+               <h1 style={{color:'#fff'}}>Perfil</h1>
+            </div> */}
+
             <div className='info-user' >
               <label className='label'>Nome</label>
               <input type='text' value={nome} onChange={(e) => setNome(e.target.value)} className='input' />
@@ -121,10 +140,10 @@ export default function Profile() {
           </form>
 
         </div>
-          
+
       </div>
-       {/* <div className='line-profile'></div> */}
-    </div>
+      {/* <div className='line-profile'></div> */}
+    </div >
 
   );
 }

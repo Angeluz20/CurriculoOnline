@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Dancing+Script&family=Khand:wght@300;400;500;600&family=Quicksand:wght@300;500&family=Source+Sans+Pro:wght@200&family=Varela+Round&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container-city-nasc{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+.container-city-nasc > label{
+    flex-direction: column;
+    display: flex;
+}
+.select-marital-status{
+    background-color: #fff;
+    border-radius: 30px;
+}
+.inputName{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 25px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 5px;
+}
+.container-tab-grid-1{
+
+    margin-top:20px;
+    margin-bottom: 20px;
+
+}
+.container-tab-1{
+   
+}
+#labelStyle{
+    font-family: 'Varela Round', sans-serif;
+    margin:3px;
+    align-items: flex-start;
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    color: #25b797;
+}
+#select-state-civil{
+    outline: none;
+    border: none;
+    background-color: #9f9f9f;
+}
+.carousel{
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.data-user-header{
+width: 100%;
+}
+.info-user-temp1{
+    margin-top: 7px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 17px;
+}
+.info-user-temp1 > span{
+ font-size: 7.2px;
+}
+@media only screen and (max-width:1240px){
+
+}

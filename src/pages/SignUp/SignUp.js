@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth';
 import { FaRegUser, FaUserEdit } from 'react-icons/fa'
 import { AiOutlineLock, AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
+import {  AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 
 import curriculo from './curriculo.svg'
 import Loading from '../../Components/loading/loading';
 
 export default function SignUp() {
 
-
+    const [secureTextEntryIcon, setSecureTextEntryIcon] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
@@ -83,8 +84,18 @@ export default function SignUp() {
                         <div className='text-field' >
                             <label for='senha'>Senha</label>
                             <div className='container-input'>
-                                <AiOutlineLock color='#25b797' size={20} />
-                                <input type='password' name='senha' value={password} placeholder='*********'  onChange={(e) => setPassword(e.target.value)}></input>
+                            <AiOutlineLock color='#25b797' size={22} />
+                                <input type={secureTextEntryIcon ? "text" : "password"}  name='senha' placeholder='*********' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                               
+                                <div
+                                    onClick={() => setSecureTextEntryIcon(!secureTextEntryIcon)}>
+                                    {secureTextEntryIcon== true ? (
+                                        <AiOutlineEyeInvisible color='#25b797' size={22} />
+                                    ) : (
+                                        < AiOutlineEye  color='#25b797' size={22} />
+                                    )}
+                                </div>
+
                             </div>
 
                         </div>

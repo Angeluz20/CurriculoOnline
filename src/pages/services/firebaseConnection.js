@@ -2,15 +2,15 @@ import firebase from "firebase";
 import 'firebase/firebase-firestore'
 import 'firebase/auth'
 import 'firebase/storage'
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDzjlUuv7OTu88PCifZiSXq5YGbdpljASU",
-    authDomain: "meucurriculoonline-8c9b3.firebaseapp.com",
-    databaseURL: "https://meucurriculoonline-8c9b3-default-rtdb.firebaseio.com",
-    projectId: "meucurriculoonline-8c9b3",
-    storageBucket: "meucurriculoonline-8c9b3.appspot.com",
-    messagingSenderId: "764250081867",
-    appId: "1:764250081867:web:9a5249c3a4d83abd219bce"
-};
+    apiKey: "AIzaSyD7N-Wh1VJWbBeDTvyqB-glSiD19QA6zcc",
+    authDomain: "bd-curriculo-9701b.firebaseapp.com",
+    projectId: "bd-curriculo-9701b",
+    storageBucket: "bd-curriculo-9701b.appspot.com",
+    messagingSenderId: "244682831380",
+    appId: "1:244682831380:web:474edf63ea75256ce69901"
+  };
 
 // Initialize Firebase
 //const app = initializeApp(firebaseConfig);

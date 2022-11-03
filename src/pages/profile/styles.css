@@ -7,8 +7,8 @@ body{
  
 }
 .container-main-profile{
-    width: 100vw;
-    height: 70vh;
+    width: 100%;
+    height: 100vh;
     background-color: #1c1c1e;
     display: flex;
     justify-content: center;
@@ -25,18 +25,21 @@ body{
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    width: 500px;
+    width: 550px;
     font-family: 'Varela Round', sans-serif;
-  
+    border-top-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    margin-top: 20px;
 }
+
 .label-avatar{
-  width: 280px;
-  height: 280px;
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  flex-direction: column;
-  cursor: pointer;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    cursor: pointer;
 }
 #input-photo{
    display: none;
@@ -68,7 +71,7 @@ body{
     box-sizing: border-box;
 }
 #photo-profile{
-    border-radius: 160px;
+    border-radius: 100px;
     width: 220px;
     height: 220px;
 }
@@ -81,6 +84,8 @@ body{
     border: none;
     font-family: 'Varela Round', sans-serif;
     box-sizing: border-box;
+    border-radius: 50px;
+    padding: 9px;
 }
 .btn-save{
     margin-top: 22px;
@@ -91,6 +96,7 @@ body{
     background: linear-gradient(to right, #25b797, #82ffa1);
     font-weight: 900;
     font-family: 'Varela Round', sans-serif;
+    border-radius: 50px;
 }
 .btn-save:hover{
     transform: scale(1.1);
@@ -98,23 +104,80 @@ body{
 
 }
 .line-profile{
-    background-color: #25b797;
+    background-color: #b12ce5;
     height: 5px;
     width: 430px;
 }
+.style-card-avatar{
+    width: 400px;
+    height: 400px;
+    background-color: #121213;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 80px;
+    margin-right: 20px;
+}
+.box-container-profile{
+    display: flex;
+    height: 24px;  
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;  
+    margin-top: 50px;
+}
+
+.box-container-profile > h5{
+    width: 300px;
+    background-color: #37373a;
+    color: #f6dfff;
+    font-size: 15px; 
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+ 
+}
+.box-line-profile{
+    height: 4px;
+    width: 100px;
+    background-color: #d27af5;
+    border-radius: 10px;
+}
 @media only screen and (max-width:950px){
+    .style-card-avatar{
+        width: 290px;
+        height: 240px;
+        align-items: center;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 80px;
+        margin-right: 0px;
+        margin-top: -50px;
+     
+    }  
     .container-main-profile{
         width: 100vw;
-        height: 85vh;
-    }
-  
-    .container-profile{
-        margin-top: 50px;
-        flex-direction: column;
-        width: 240px;
-        height: 490px;
+        height: 100vh;
+        display: flex;
         justify-content: center;
+    }
+   
+    .container-profile{
+     
+        flex-direction: column;
+        width: 290px;
+        height: 490px;
         padding: 50px;
+        border-top-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+       
     }
     #photo-profile{
         border-radius: 160px;
@@ -125,14 +188,14 @@ body{
     .info-user{
         width: 220px;
         height: 200px;
-         bottom: 40px;
+        bottom: 40px;
         justify-content: center;
         align-items:center;
         flex-direction: column; 
       }
       .form-avatar{
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
         align-items: center;
         justify-content: center;
         display: flex;
