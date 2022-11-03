@@ -14,7 +14,6 @@
 - [Introdução](#introdução)
 - [Tecnologias uttilizadas](#Tecnologias)
 - [Recursos](#Recursos)
-- [Contribuidores](#Desenvolvedor)
 - [Processo para Buildar](#build-process)
 
 
