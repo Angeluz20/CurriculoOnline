@@ -12,7 +12,7 @@
 ## Índice
 
 - [Introdução](#introdução)
-- [Tecnologias uttilizadas](#Tecnologias)
+- [Tecnologias utilizadas](#Tecnologias)
 - [Recursos](#Recursos)
 - [Processo para Buildar](#build-process)
 
