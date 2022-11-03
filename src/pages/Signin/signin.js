@@ -1,13 +1,13 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../contexts/auth';
+import { AuthContext } from '../../contexts/auth.js';
 import { FaRegUser } from 'react-icons/fa'
 import { AiOutlineLock, AiOutlineUser, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 //AiOutlineLock
 import '../Signin/styles.css'
 
 import curriculo from './curriculo.svg'
-import Loading from '../Components/loading/loading';
+import Loading from '../../Components/loading/loading.js';
 
 export default function Signin() {
 

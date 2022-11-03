@@ -169,7 +169,29 @@
     margin-right: 25px;
     margin-bottom: -43px;
  }
-@media only screen and (max-width:1240px){
+ @media only screen and (max-width:1240px){
+    .nome-temp-2 >h5{
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        font-family: 'Saira', sans-serif;
+        font-size: 10px;
+        position: absolute;
+        display: flex;
+        margin-bottom: 10px;
+     }
+     .header-template-view-2{
+  
+        height: 135px;
+
+        
+    }
+    .photo-template-view-2{
+        width: 55px;
+        height: 50px;
+        margin-top: 10px;
+    }
+ }
+/* @media only screen and (max-width:1240px){
     .container-form-temp-view-2{
     height: 120%;  
 }
@@ -274,4 +296,4 @@
      .info-user-temp-view-2 > span{
         font-size: 5.2px;
        }
-}
+} */
