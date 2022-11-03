@@ -44,3 +44,7 @@ Funcionalidades disponíveis no site Meu Currículo Online:
 * Criar o seu currículo de uma maneira simplifica, intuitiva e com resultados visuais muito mais agradáveis do que a maneira convencional de fazer.
 * Ogarnização dos seus curriculos com a possibilidade de Editar, Excluir e Visualizar.
 * Editar o seu Perfil como o nome e foto.
+
+<p align="center">
+  <img src="./src/img/imgs-Readme/view.gif" width=650>
+</p>
