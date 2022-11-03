@@ -124,7 +124,7 @@ export default function TempleteView2({
         </div>
 
         <div className='container-informacoes-user-view-2'>
-          <div className='label-info-mini-temp-2'>
+          <div className='label-info-mini-temp-view-2'>
             <label><IoSchoolSharp color='#ad6fe2d1' size={10} /> Cursos profissionalizantes</label>
           </div>
 
