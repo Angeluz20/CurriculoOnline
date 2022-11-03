@@ -1,5 +1,9 @@
 # Getting Started with Create React App
-
+<h1 align="center"> Meu Currículo Online </h1> <br>
+<p align="center">
+    <img alt="MCO" title="MCO" src="./src/img/imgs-Readme/logo.png" width="450">
+  </a>
+</p>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
