@@ -32,3 +32,12 @@ o site foi estruturado em uma linha de raciocino linear, onde cada elemento fica
     <img alt="home" title="home" src="./src/img/imgs-Readme/home.jpg" width="650">
   </a>
 </p>
+
+## Recursos do Projeto
+
+Funcionalidades disponíveis no site Meu Currículo Online:
+
+* Criar uma conta.
+* Criar o seu currículo de uma maneira simplifica, intuitiva e com resultados visuais muito mais agradáveis do que a maneira convencional de fazer.
+* Ogarnização dos seus curriculos com a possibilidade de Editar, Excluir e Visualizar.
+* Editar o seu Perfil como o nome e foto.
