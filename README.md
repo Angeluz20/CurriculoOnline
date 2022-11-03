@@ -9,7 +9,7 @@
   Projeto Feito para paresentação da primeira feira de tecnologia e inovação - UNINORTE.
 </p>
 
-## Table of Contents
+## Índice
 
 - [Introdução](#introdução)
 - [Tecnologias uttilizadas](#Tecnologias)
