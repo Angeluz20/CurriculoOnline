@@ -37,7 +37,7 @@ o site foi estruturado em uma linha de raciocino linear, onde cada elemento fica
 </p>
 
 ## Tecnologias
-**Tecnolgias usadas**
+**Tecnologias usadas**
 <p align="center">
   <p align="center">
     <img alt="home" title="home" src="./src/img/imgs-Readme/tec.png" width="450">
